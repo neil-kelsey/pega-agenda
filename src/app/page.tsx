@@ -9,22 +9,29 @@ import { calculateTimeRange } from "./utils/calculateTimeRange";
 import FilterPanel from "./components/FilterPanel";
 import ActivityList from "./components/ActivityList";
 import Week from "./components/Week";
+import { AppProvider, useAppContext } from "./context/AppContext";
 
 export default function Home() {
+  return (
+    <AppProvider>
+      <HomeContent />
+    </AppProvider>
+  );
+}
+
+const HomeContent: React.FC = () => {
   // Set the data
-  const data: EventData = exampleData;
+  const { data, selectedDate, setSelectedDate } = useAppContext();
 
   // Extract unique dates from activities
   const uniqueDates: string[] = extractUniqueDates(data.activities);
 
-  const [selectedDate, setSelectedDate] = useState<string>(uniqueDates[0]);
   const [earliestTime, setEarliestTime] = useState<string>('');
   const [latestTime, setLatestTime] = useState<string>('');
   const [timeDifference, setTimeDifference] = useState<number>(0);
 
   // Handle change for the filter panel - set the selected day
-  const handleDateChange = (date: SetStateAction<string>) => {
-    console.log("NeilTest event", date)
+  const handleDateChange = (date: string) => {
     setSelectedDate(date);
   };
 
@@ -38,9 +45,7 @@ export default function Home() {
   return (
     <main className={styles.main}>
       <FilterPanel uniqueDates={uniqueDates} selectedDate={selectedDate} onDateChange={handleDateChange} />
-      <ActivityList activities={data.activities} selectedDate={selectedDate} />
-
       <Week uniqueDates={uniqueDates} timeDifference={timeDifference} />
     </main>
   );
-}
+};
