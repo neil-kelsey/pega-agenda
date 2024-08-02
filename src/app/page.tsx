@@ -1,52 +1,33 @@
 "use client";
 
 import styles from "./page.module.css";
-import { ChangeEvent, useState } from "react";
+import { SetStateAction, useState } from "react";
 import exampleData from "./data/test-data.json";
-
-// Define an interface for the activity data type
-interface Activity {
-  startTime: string;
-  endTime: string;
-  title: string;
-  details: string;
-  category: number;
-}
-
-interface EventData {
-  event: string;
-  activities: Activity[];
-}
+import { EventData } from "./types/activities";
+import { extractUniqueDates } from "./utils/extractUniqueDates";
+import FilterPanel from "./components/FilterPanel";
+import ActivityList from "./components/ActivityList";
 
 export default function Home() {
+  // Set the data
   const data: EventData = exampleData;
 
   // Extract unique dates from activities
-  const uniqueDates: string[] = Array.from(
-    new Set(data.activities.map(activity => activity.startTime.split("T")[0]))
-  );
+  const uniqueDates: string[] = extractUniqueDates(data.activities);
 
+  // Set selected date for the day component
   const [selectedDate, setSelectedDate] = useState<string>(uniqueDates[0]);
 
-  const handleDateChange = (event: ChangeEvent<HTMLSelectElement>) => {
-    setSelectedDate(event.target.value);
+  // Handle change for the filter panel - set the selected day
+  const handleDateChange = (date: SetStateAction<string>) => {
+    console.log("NeilTest event", date)
+    setSelectedDate(date);
   };
-
-  const filteredActivities: Activity[] = data.activities.filter(activity =>
-    activity.startTime.startsWith(selectedDate)
-  );
 
   return (
     <main className={styles.main}>
-      <select onChange={handleDateChange} value={selectedDate}>
-        {uniqueDates.map(date => (
-          <option key={date} value={date}>{date}</option>
-        ))}
-      </select>
-
-      {filteredActivities.map((activity, index) => (
-        <p key={index}>Hello world</p>
-      ))}
+      <FilterPanel uniqueDates={uniqueDates} selectedDate={selectedDate} onDateChange={handleDateChange} />
+      <ActivityList activities={data.activities} selectedDate={selectedDate} />
     </main>
   );
 }
