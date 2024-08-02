@@ -1,13 +1,10 @@
 "use client";
 
 import styles from "./page.module.css";
-import { SetStateAction, useState, useEffect } from "react";
-import exampleData from "./data/test-data.json";
-import { EventData } from "./types/activities";
+import { useState, useEffect } from "react";
 import { extractUniqueDates } from "./utils/extractUniqueDates";
 import { calculateTimeRange } from "./utils/calculateTimeRange";
 import FilterPanel from "./components/FilterPanel";
-import ActivityList from "./components/ActivityList";
 import Week from "./components/Week";
 import { AppProvider, useAppContext } from "./context/AppContext";
 
@@ -30,9 +27,19 @@ const HomeContent: React.FC = () => {
   const [latestTime, setLatestTime] = useState<string>('');
   const [timeDifference, setTimeDifference] = useState<number>(0);
 
+  const [viewMode, setViewMode] = useState<'day' | 'week'>('week');
+
+  console.log("NeilTest - viewMode", viewMode)
+
   // Handle change for the filter panel - set the selected day
   const handleDateChange = (date: string) => {
     setSelectedDate(date);
+  };
+
+  // Handle view mode change
+  const handleViewModeChange = (viewMode: 'day' | 'week') => {
+    console.log("NeilTest - handleViewModeChange", viewMode)
+    setViewMode(viewMode);
   };
 
   useEffect(() => {
@@ -44,7 +51,8 @@ const HomeContent: React.FC = () => {
 
   return (
     <main className={styles.main}>
-      <FilterPanel uniqueDates={uniqueDates} selectedDate={selectedDate} onDateChange={handleDateChange} />
+      <FilterPanel uniqueDates={uniqueDates} selectedDate={selectedDate} onDateChange={handleDateChange} onViewModeChange={handleViewModeChange} />
+      {viewMode === "week" ? <span>Its week</span> : <span>Its day</span>}
       <Week uniqueDates={uniqueDates} timeDifference={timeDifference} />
     </main>
   );
