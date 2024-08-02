@@ -6,6 +6,7 @@ import { extractUniqueDates } from "./utils/extractUniqueDates";
 import { calculateTimeRange } from "./utils/calculateTimeRange";
 import FilterPanel from "./components/FilterPanel";
 import Week from "./components/Week";
+import Day from "./components/Day";
 import { AppProvider, useAppContext } from "./context/AppContext";
 
 export default function Home() {
@@ -52,8 +53,18 @@ const HomeContent: React.FC = () => {
   return (
     <main className={styles.main}>
       <FilterPanel uniqueDates={uniqueDates} selectedDate={selectedDate} onDateChange={handleDateChange} onViewModeChange={handleViewModeChange} />
-      {viewMode === "week" ? <span>Its week</span> : <span>Its day</span>}
-      <Week uniqueDates={uniqueDates} timeDifference={timeDifference} />
+      {viewMode === "week" ? 
+        <Week uniqueDates={uniqueDates} timeDifference={timeDifference} /> : 
+        <div className="week">
+          {/* TODO - I don't like how this is wrapped in a 'week' div when it'll only ever be a day, need better naming */}
+          <div className="time-column">
+            {[...Array(timeDifference)].map((_, index) => (
+              <span key={index}>7:00am</span>
+            ))}
+          </div>
+          <Day timeDifference={timeDifference} />
+        </div>
+      }
     </main>
   );
 };
