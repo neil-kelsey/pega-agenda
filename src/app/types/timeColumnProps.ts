@@ -1,3 +1,4 @@
 export interface TimeColumnProps {
-    timeDifference: number;
-  }
+  earliestTime: string;
+  timeDifference: number;
+}

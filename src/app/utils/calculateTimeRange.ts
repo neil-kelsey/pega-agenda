@@ -5,6 +5,7 @@ interface TimeRangeResult {
   latestTime: string;
   timeDifference: number;
   weekTimeDifference?: number;
+  weekEarliestTime?: string;
 }
 
 export const calculateTimeRange = (activities: Activity[], selectedDateOrDates: string | string[]): TimeRangeResult => {
@@ -40,6 +41,7 @@ export const calculateTimeRange = (activities: Activity[], selectedDateOrDates: 
       latestTime: formattedLatest,
       timeDifference: differenceInHoursRoundedUp,
       weekTimeDifference: differenceInHoursRoundedUp,
+      weekEarliestTime: formattedEarliest,
     };
   } else {
     return {
@@ -47,6 +49,7 @@ export const calculateTimeRange = (activities: Activity[], selectedDateOrDates: 
       latestTime: '',
       timeDifference: 0,
       weekTimeDifference: 0,
+      weekEarliestTime: '',
     };
   }
 };
