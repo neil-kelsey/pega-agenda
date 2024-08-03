@@ -6,7 +6,7 @@ const Day: React.FC<DayProps> = ({ timeDifference, date}) => {
     return (
         <div className="day">
             <div className="activities">
-                <ActivityList selectedDate={date} />
+                <ActivityList timeDifference={timeDifference} selectedDate={date} />
             </div>
             <div className="time-lines">
                 {[...Array(timeDifference)].map((_, index) => (

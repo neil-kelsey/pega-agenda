@@ -61,3 +61,23 @@ body, html {
   margin: 0;
   z-index: 1; /* Ensure the text is above the lines */
 }
+
+
+
+
+
+
+.activities {
+  position: relative;
+  height:100%;
+  width:100%;
+}
+
+.activities .activity {
+  position: absolute;
+  top:14.28%
+}
+
+.category-1 {
+  background-color: #c2dbd2;
+}
