@@ -4,18 +4,19 @@ interface TimeRangeResult {
   earliestTime: string;
   latestTime: string;
   timeDifference: number;
+  weekTimeDifference?: number;
 }
 
-export const calculateTimeRange = (activities: Activity[], selectedDate: string): TimeRangeResult => {
-  // Find earliest and latest times for the selected date
-  const activitiesForSelectedDate = activities.filter(activity =>
-    activity.startTime.startsWith(selectedDate)
+export const calculateTimeRange = (activities: Activity[], selectedDateOrDates: string | string[]): TimeRangeResult => {
+  const dates = Array.isArray(selectedDateOrDates) ? selectedDateOrDates : [selectedDateOrDates];
+  const activitiesForSelectedDates = activities.filter(activity =>
+    dates.some(date => activity.startTime.startsWith(date))
   );
 
-  if (activitiesForSelectedDate.length > 0) {
+  if (activitiesForSelectedDates.length > 0) {
     // We need to figure out the earliest time and latest time in the data
     // So we know the time range we want to display
-    const times = activitiesForSelectedDate.map(activity => activity.startTime.split('T')[1]);
+    const times = activitiesForSelectedDates.map(activity => activity.startTime.split('T')[1]);
     const sortedTimes = times.sort();
     const earliest = sortedTimes[0];
     const latest = sortedTimes[sortedTimes.length - 1];
@@ -38,12 +39,14 @@ export const calculateTimeRange = (activities: Activity[], selectedDate: string)
       earliestTime: formattedEarliest,
       latestTime: formattedLatest,
       timeDifference: differenceInHoursRoundedUp,
+      weekTimeDifference: differenceInHoursRoundedUp,
     };
   } else {
     return {
       earliestTime: '',
       latestTime: '',
       timeDifference: 0,
+      weekTimeDifference: 0,
     };
   }
 };

@@ -28,6 +28,7 @@ const HomeContent: React.FC = () => {
   const [earliestTime, setEarliestTime] = useState<string>('');
   const [latestTime, setLatestTime] = useState<string>('');
   const [timeDifference, setTimeDifference] = useState<number>(0);
+  const [weekTimeDifference, setWeekTimeDifference] = useState<number>(0);
 
   const [viewMode, setViewMode] = useState<'day' | 'week'>('week');
 
@@ -45,20 +46,26 @@ const HomeContent: React.FC = () => {
   };
 
   useEffect(() => {
-    // TODO
-    // This is useful to calculate the time range for the selected date for day view
-    // But for week view it needs to be whole range
+    // For a single day view we want to show the time range from the earliest event for that day to the latest
+    // So we use calculateTimeRange to set these consts
     const { earliestTime, latestTime, timeDifference } = calculateTimeRange(data.activities, selectedDate);
+    console.log("NeilTest - timecheck - timeDifference", timeDifference);
+
+    // But for week view we want to find the earliest and latest events for the entire week 
+    const { weekTimeDifference = 0 } = calculateTimeRange(data.activities, uniqueDates);
+    console.log("NeilTest - timecheck - weekTimeDifference", weekTimeDifference);
+
     setEarliestTime(earliestTime);
     setLatestTime(latestTime);
     setTimeDifference(timeDifference);
-  }, [selectedDate, data.activities]);
+    setWeekTimeDifference(weekTimeDifference);
+  }, [selectedDate, data.activities, uniqueDates]);
 
   return (
     <main className={styles.main}>
       <FilterPanel uniqueDates={uniqueDates} selectedDate={selectedDate} onDateChange={handleDateChange} onViewModeChange={handleViewModeChange} />
       {viewMode === "week" ? 
-        <Week uniqueDates={uniqueDates} timeDifference={timeDifference} /> : 
+        <Week uniqueDates={uniqueDates} timeDifference={weekTimeDifference} /> : 
         <div className="week">
           {/* TODO - Make this a DayContainer component */}
           {/* TODO - I don't like how this is wrapped in a 'week' div when it'll only ever be a day, need better naming */}
