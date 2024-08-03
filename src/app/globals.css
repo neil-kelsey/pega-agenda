@@ -33,8 +33,12 @@ body, html {
   align-items: center;
   justify-content: center;
   border-left: 1px solid #ccc; /* Optional: visual separator between days */
-  background-color: #f9f9f9; /* Optional: background color for days */
+  background-color: #FFF; /* Optional: background color for days */
   position: relative;
+}
+
+.day:nth-child(even) {
+  background-color: #f4f4f4; /* Background color for even days */
 }
 
 .time-lines {

@@ -8,6 +8,7 @@ import FilterPanel from "./components/FilterPanel";
 import Week from "./components/Week";
 import Day from "./components/Day";
 import { AppProvider, useAppContext } from "./context/AppContext";
+import TimeColumn from "./components/TimeColumn";
 
 export default function Home() {
   return (
@@ -44,6 +45,9 @@ const HomeContent: React.FC = () => {
   };
 
   useEffect(() => {
+    // TODO
+    // This is useful to calculate the time range for the selected date for day view
+    // But for week view it needs to be whole range
     const { earliestTime, latestTime, timeDifference } = calculateTimeRange(data.activities, selectedDate);
     setEarliestTime(earliestTime);
     setLatestTime(latestTime);
@@ -56,13 +60,10 @@ const HomeContent: React.FC = () => {
       {viewMode === "week" ? 
         <Week uniqueDates={uniqueDates} timeDifference={timeDifference} /> : 
         <div className="week">
+          {/* TODO - Make this a DayContainer component */}
           {/* TODO - I don't like how this is wrapped in a 'week' div when it'll only ever be a day, need better naming */}
-          <div className="time-column">
-            {[...Array(timeDifference)].map((_, index) => (
-              <span key={index}>7:00am</span>
-            ))}
-          </div>
-          <Day timeDifference={timeDifference} />
+          <TimeColumn timeDifference={timeDifference}/>
+          <Day timeDifference={timeDifference} date={selectedDate} />
         </div>
       }
     </main>
