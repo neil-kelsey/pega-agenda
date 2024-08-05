@@ -6,4 +6,5 @@ export interface ActivityListProps {
     minutesFromDayStart: number;
     activities: Activity[];
     oneMinuteOfHeight: number;
+    activityLength: number;
   }

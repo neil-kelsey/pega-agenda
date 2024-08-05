@@ -67,6 +67,11 @@ body, html {
 
 
 
+
+
+
+/* Start of activities styles */
+
 .activities {
   position: relative;
   height:100%;
@@ -81,3 +86,16 @@ body, html {
 .category-1 {
   background-color: #c2dbd2;
 }
+
+.activity::before {
+  content: "";
+  width: 20px; /* Adjust the size as needed */
+  height: 20px; /* Adjust the size as needed */
+  background-color: blue; /* Adjust the color as needed */
+  border-radius: 50%;
+  position: absolute; /* Position it relative to its container */
+  top: -10px; /* Adjust the position as needed */
+  left: -10px; /* Adjust the position as needed */
+}
+
+/* End of activities styles */

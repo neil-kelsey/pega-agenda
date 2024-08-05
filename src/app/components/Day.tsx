@@ -9,13 +9,13 @@ const Day: React.FC<DayProps> = ({ timeDifference, date, activities, oneMinuteOf
 
     return (
         <div className="day">
-            <div className="activities">
-                <ActivityList timeDifference={timeDifference} selectedDate={date} activities={activities} oneMinuteOfHeight={oneMinuteOfHeight} />
-            </div>
             <div className="time-lines">
                 {[...Array(timeDifference)].map((_, index) => (
                     <span key={index}></span>
                 ))}
+            </div>
+            <div className="activities">
+                <ActivityList timeDifference={timeDifference} selectedDate={date} activities={activities} oneMinuteOfHeight={oneMinuteOfHeight} />
             </div>
         </div>
     );

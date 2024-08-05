@@ -12,31 +12,39 @@ const calculateMinutesFromDayStart = (time: string): number => {
   return (hours * 60) + minutes;
 };
 
-export const calculateActivityPositions = (activities: Activity[], selectedDates: string[], timeDifference: number, weekEarliestTime: string) => {
+const calculateActivityLength = (startTime: string, endTime: string): number => {
+  const startMinutes = calculateMinutesFromDayStart(startTime);
+  const endMinutes = calculateMinutesFromDayStart(endTime);
+  return endMinutes - startMinutes;
+};
+
+export const calculateActivityPositions = (
+  activities: Activity[], 
+  selectedDates: string[], 
+  timeDifference: number, 
+  weekEarliestTime: string
+) => {
   const filteredActivities: Activity[] = activities.filter(activity =>
     selectedDates.some(date => activity.startTime.startsWith(date))
   );
 
   if (filteredActivities.length === 0) {
-    return { updatedActivities: [], oneMinuteOfHeight: 0 };
+    return { updatedActivities: [], oneMinuteOfHeight: 0, activityLength: [] };
   }
 
-  // const firstActivityStartDate = filteredActivities[0].startTime; original
-  // const firstActivityStartTime = extractTime(firstActivityStartDate); original
   const firstActivityStartTime = weekEarliestTime;
-
-  console.log("NeilTest - calc - firstActivityStartTime", firstActivityStartTime)
-
-
   const dayStartMinutes = calculateMinutesFromDayStart(firstActivityStartTime);
 
   const updatedActivities = filteredActivities.map((activity, index) => {
     const activityStartTime = extractTime(activity.startTime);
+    const activityEndTime = extractTime(activity.endTime);
     const minutesFromDayStart = calculateMinutesFromDayStart(activityStartTime) - dayStartMinutes;
+    const activityLength = calculateActivityLength(activityStartTime, activityEndTime);
 
     return {
       ...activity,
       minutesFromDayStart,
+      activityLength,
     };
   });
 

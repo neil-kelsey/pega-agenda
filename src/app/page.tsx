@@ -71,13 +71,10 @@ const HomeContent: React.FC = () => {
     <main className={styles.main}>
       <FilterPanel viewMode={viewMode} uniqueDates={uniqueDates} selectedDate={selectedDate} onDateChange={handleDateChange} onViewModeChange={handleViewModeChange} />
       {viewMode === "week" ? 
-        // TODO -  bug with week view, they all start at zero but for their respective days
         <Week uniqueDates={uniqueDates} timeDifference={weekTimeDifference} weekEarliestTime={weekEarliestTime} /> : 
-        <>
-          {/* TODO - Make this a DayContainer component */}
-          {/* TODO - I don't like how this is wrapped in a 'week' div when it'll only ever be a day, need better naming */}
-          <Week uniqueDates={[selectedDate]} timeDifference={timeDifference} weekEarliestTime={earliestTime} />
-        </>
+        // TODO - Make this a DayContainer component
+        // TODO - I don't like how this is wrapped in a 'week' div when it'll only ever be a day, need better naming
+        <Week uniqueDates={[selectedDate]} timeDifference={timeDifference} weekEarliestTime={earliestTime} />
       }
     </main>
   );
