@@ -5,6 +5,7 @@ export interface Activity {
     title: string;
     details: string;
     category: number;
+    minutesFromDayStart:number
   }
   
   export interface EventData {

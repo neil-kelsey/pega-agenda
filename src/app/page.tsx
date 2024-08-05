@@ -6,9 +6,7 @@ import { extractUniqueDates } from "./utils/extractUniqueDates";
 import { calculateTimeRange } from "./utils/calculateTimeRange";
 import FilterPanel from "./components/FilterPanel";
 import Week from "./components/Week";
-import Day from "./components/Day";
 import { AppProvider, useAppContext } from "./context/AppContext";
-import TimeColumn from "./components/TimeColumn";
 
 export default function Home() {
   return (
@@ -52,8 +50,8 @@ const HomeContent: React.FC = () => {
       // For a single day view we want to show the time range from the earliest event for that day to the latest
       // So we use calculateTimeRange to set these consts
       const { earliestTime, latestTime, timeDifference } = calculateTimeRange(data.activities, selectedDate);
-      console.log("NeilTest - timecheck - timeDifference", timeDifference);
-      console.log("NeilTest - earliestTime", earliestTime);
+      console.log("NeilTest - useEffect - timecheck - timeDifference", timeDifference);
+      console.log("NeilTest - useEffect - earliestTime", earliestTime);
       setEarliestTime(earliestTime);
       setLatestTime(latestTime);
       setTimeDifference(timeDifference);
@@ -73,13 +71,13 @@ const HomeContent: React.FC = () => {
     <main className={styles.main}>
       <FilterPanel viewMode={viewMode} uniqueDates={uniqueDates} selectedDate={selectedDate} onDateChange={handleDateChange} onViewModeChange={handleViewModeChange} />
       {viewMode === "week" ? 
+        // TODO -  bug with week view, they all start at zero but for their respective days
         <Week uniqueDates={uniqueDates} timeDifference={weekTimeDifference} weekEarliestTime={weekEarliestTime} /> : 
-        <div className="week">
+        <>
           {/* TODO - Make this a DayContainer component */}
           {/* TODO - I don't like how this is wrapped in a 'week' div when it'll only ever be a day, need better naming */}
-          <TimeColumn earliestTime={earliestTime} timeDifference={timeDifference}/>
-          <Day timeDifference={timeDifference} date={selectedDate} />
-        </div>
+          <Week uniqueDates={[selectedDate]} timeDifference={timeDifference} weekEarliestTime={earliestTime} />
+        </>
       }
     </main>
   );
