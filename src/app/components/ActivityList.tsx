@@ -1,17 +1,22 @@
 import React from "react";
 import { ActivityListProps } from "../types/activityListProps";
+import { extractFormattedTime } from "../utils/extractFormattedTime";
 
 const ActivityList: React.FC<ActivityListProps> = ({ selectedDate, timeDifference, activities, oneMinuteOfHeight }) => {
   return (
     <>
-      {activities.map((activity, index) => (
-        // TODO consider passing values through to a CSS parameter to avoid the inline styling - https://stackoverflow.com/questions/17893823/how-to-pass-parameters-to-css-classes
-        <div key={index} className={"activity category-" + activity.category} style={{ top: activity.minutesFromDayStart * oneMinuteOfHeight + "%", height: activity.activityLength * oneMinuteOfHeight + "%" }}>
-          <p>{activity.startTime} - {activity.endTime}</p>
-          <p>{activity.title}</p>
-          <p>{activity.details}</p>
-        </div>
-      ))}
+      {activities.map((activity, index) => {
+        const startTimeFormatted = extractFormattedTime(activity.startTime);
+        const endTimeFormatted = extractFormattedTime(activity.endTime);
+        return (
+          <div key={index} className={"activity category-" + activity.category} style={{ top: activity.minutesFromDayStart * oneMinuteOfHeight + "%" , height: `calc(${activity.activityLength * oneMinuteOfHeight}% - 20px)` }}>
+            <div className="activity-container">
+              <h2><span className="bold">{activity.title}</span> - 30 minutes</h2>
+              <p>{activity.details}</p>
+            </div>
+          </div>
+        );
+      })}
     </>
   );
 };

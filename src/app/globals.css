@@ -1,8 +1,36 @@
+:root {
+  --pega-space-sm: 5px;
+  --pega-space-md: 10px;
+
+  --pega-colour-medium-grey: #dcdcdc;
+  --pega-colour-light-grey: hsl(0, 0%, 88%);
+  --pega-colour-lighter-grey: #F4F4F4;
+  
+  --pega-colour-category-1: rgb(75, 40, 102);
+  --pega-colour-category-1-transparent: rgba(75, 40, 102, 0.3);
+  --pega-colour-category-2: rgb(62, 76, 158);
+  --pega-colour-category-2-transparent: rgba(62, 76, 158, 0.3);
+  --pega-colour-category-3: rgb(43, 158, 179);
+  --pega-colour-category-3-transparent: rgba(43, 158, 179, 0.3);
+  --pega-colour-category-4: rgb(68, 175, 105);
+  --pega-colour-category-4-transparent: rgba(68, 175, 105, 0.3);
+  --pega-colour-category-5: rgb(248, 51, 60);
+  --pega-colour-category-5-transparent: rgba(248, 51, 60, 0.3);
+  --pega-colour-category-6: rgb(252, 171, 16);
+  --pega-colour-category-6-transparent: rgba(252, 171, 16, 0.3);
+  --pega-colour-category-7: rgb(188, 181, 138);
+  --pega-colour-category-7-transparent: rgba(188, 181, 138, 0.3);
+}
+
 /* styles.css */
 body, html {
   margin: 0;
   padding: 0;
   height: 100%;
+}
+
+.bold {
+  font-weight: 600;
 }
 
 .week {
@@ -16,8 +44,8 @@ body, html {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 100px; /* Fixed width for the time column */
-  background-color: lightgrey; /* Just for visual reference */
+  font-size:14px;
+  width: 80px; /* Fixed width for the time column */
 }
 
 .time-column span {
@@ -32,13 +60,12 @@ body, html {
   display: flex;
   align-items: center;
   justify-content: center;
-  border-left: 1px solid #ccc; /* Optional: visual separator between days */
   background-color: #FFF; /* Optional: background color for days */
   position: relative;
 }
 
 .day:nth-child(even) {
-  background-color: #f4f4f4; /* Background color for even days */
+  background-color: var(--pega-colour-lighter-grey); /* Background color for even days */
 }
 
 .time-lines {
@@ -53,7 +80,7 @@ body, html {
 
 .time-lines span {
   height: 1px;
-  background-color: black; /* Color of the horizontal lines */
+  background-color: var(--pega-colour-light-grey); /* Color of the horizontal lines */
   display: block;
 }
 
@@ -76,11 +103,13 @@ body, html {
   position: relative;
   height:100%;
   width:100%;
+  border-left:7px solid var(--pega-colour-light-grey);
 }
 
 .activities .activity {
   position: absolute;
-  top:14.28%
+  top:14.28%;
+  padding:var(--pega-space-md);
 }
 
 .category-1 {
@@ -89,13 +118,115 @@ body, html {
 
 .activity::before {
   content: "";
-  width: 20px; /* Adjust the size as needed */
-  height: 20px; /* Adjust the size as needed */
-  background-color: blue; /* Adjust the color as needed */
+  width: 18px;
+  height: 18px;
+  background-color: var(--pega-colour-medium-grey);
   border-radius: 50%;
-  position: absolute; /* Position it relative to its container */
-  top: -10px; /* Adjust the position as needed */
-  left: -10px; /* Adjust the position as needed */
+  position: absolute;
+  top: -10px;
+  left: -13px;
+}
+
+.activity {
+  width:50%;
+  position: relative;
+  left:-7px;
+  border-left:7px solid var(--pega-colour-medium-grey);
+}
+
+.activity h2 {
+  font-size: 16px;
+  font-weight: 400;
+  margin:0 0 var(--pega-space-sm) 0;
+}
+
+
+
+.activity p {
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.activity-container {
+  height: -webkit-fill-available;
+  overflow: hidden;
+}
+
+.activity.category-1::before {
+  background-color: var(--pega-colour-category-1);
+}
+
+.activity.category-1 {
+  border-right:1px solid var(--pega-colour-category-1);
+  border-bottom:1px solid var(--pega-colour-category-1);
+  border-left:7px solid var(--pega-colour-category-1);
+  background-color: var(--pega-colour-category-1-transparent);
+}
+
+.activity.category-2::before {
+  background-color: var(--pega-colour-category-2);
+}
+
+.activity.category-2 {
+  border-right:1px solid var(--pega-colour-category-2);
+  border-bottom:1px solid var(--pega-colour-category-2);
+  border-left:7px solid var(--pega-colour-category-2);
+  background-color: var(--pega-colour-category-2-transparent);
+}
+
+.activity.category-3::before {
+  background-color: var(--pega-colour-category-3);
+}
+
+.activity.category-3 {
+  border-right:1px solid var(--pega-colour-category-3);
+  border-bottom:1px solid var(--pega-colour-category-3);
+  border-left:7px solid var(--pega-colour-category-3);
+  background-color: var(--pega-colour-category-3-transparent);
+}
+
+.activity.category-4::before {
+  background-color: var(--pega-colour-category-4);
+}
+
+.activity.category-4 {
+  border-right:1px solid var(--pega-colour-category-4);
+  border-bottom:1px solid var(--pega-colour-category-4);
+  border-left:7px solid var(--pega-colour-category-4);
+  background-color: var(--pega-colour-category-4-transparent);
+}
+
+.activity.category-5::before {
+  background-color: var(--pega-colour-category-5);
+}
+
+.activity.category-5 {
+  border-right:1px solid var(--pega-colour-category-5);
+  border-bottom:1px solid var(--pega-colour-category-5);
+  border-left:7px solid var(--pega-colour-category-5);
+  background-color: var(--pega-colour-category-5-transparent);
+}
+
+.activity.category-6::before {
+  background-color: var(--pega-colour-category-6);
+}
+
+.activity.category-6 {
+  border-right:1px solid var(--pega-colour-category-6);
+  border-bottom:1px solid var(--pega-colour-category-6);
+  border-left:7px solid var(--pega-colour-category-6);
+  background-color: var(--pega-colour-category-6-transparent);
+}
+
+.activity.category-7::before {
+  background-color: var(--pega-colour-category-7);
+}
+
+.activity.category-7 {
+  border-right:1px solid var(--pega-colour-category-7);
+  border-bottom:1px solid var(--pega-colour-category-7);
+  border-left:7px solid var(--pega-colour-category-7);
+  background-color: var(--pega-colour-category-7-transparent);
 }
 
 /* End of activities styles */
