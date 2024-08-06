@@ -7,6 +7,7 @@ export interface Activity {
     category: number;
     minutesFromDayStart:number;
     activityLength: number;
+    alignment: string;
   }
   
   export interface EventData {

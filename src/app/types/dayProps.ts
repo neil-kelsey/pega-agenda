@@ -5,4 +5,5 @@ export interface DayProps {
     date: string;
     activities: Activity[];
     oneMinuteOfHeight: number;
+    viewType: string;
   }

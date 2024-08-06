@@ -1,7 +1,7 @@
 import { ChangeEvent } from "react";
 import { FilterPanelProps } from "../types/filterPanelProps";
 
-const FilterPanel: React.FC<FilterPanelProps> = ({ viewMode, uniqueDates, selectedDate, onDateChange, onViewModeChange }) => {
+const FilterPanel: React.FC<FilterPanelProps> = ({ viewMode, uniqueDates, selectedDate, onDateChange, onViewModeChange, viewType, onViewTypeChange }) => {
   const handleDateChange = (event: ChangeEvent<HTMLSelectElement>) => {
     onDateChange(event.target.value);
   };
@@ -10,17 +10,28 @@ const FilterPanel: React.FC<FilterPanelProps> = ({ viewMode, uniqueDates, select
     onViewModeChange(viewMode);
   };
 
+  const handleViewTypeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    onViewTypeChange(event.target.value as 'calendar' | 'list');
+  };
+
   return (
-    <div>
-      <button onClick={handleViewModeChange('day')}>Day view</button>
-      <button onClick={handleViewModeChange('week')}>Week view</button>
+    <div className="filters">
+      <button className={viewMode === 'day' ? 'day-btn selected' : 'day-btn'} onClick={handleViewModeChange('day')}>Day</button>
+      <button className={viewMode === 'week' ? 'week-btn selected' : 'week-btn'} onClick={handleViewModeChange('week')}>Week</button>
       {viewMode === "week" ?
         <></> :
         <select onChange={handleDateChange} value={selectedDate}>
           {uniqueDates.map(date => (
             <option key={date} value={date}>{date}</option>
           ))}
-        </select> }
+        </select>
+      }
+      <span>
+        <input type="radio" id="calendar" name="viewType" value="calendar" checked={viewType === 'calendar'} onChange={handleViewTypeChange} />
+        <label htmlFor="calendar">Calendar</label>
+        <input type="radio" id="list" name="viewType" value="list" checked={viewType === 'list'} onChange={handleViewTypeChange} />
+        <label htmlFor="list">List</label>
+      </span>
     </div>
   );
 };

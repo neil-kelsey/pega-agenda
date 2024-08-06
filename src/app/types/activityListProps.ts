@@ -7,4 +7,5 @@ export interface ActivityListProps {
     activities: Activity[];
     oneMinuteOfHeight: number;
     activityLength: number;
+    viewType: string;
   }

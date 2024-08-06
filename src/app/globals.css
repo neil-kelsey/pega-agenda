@@ -1,10 +1,15 @@
 :root {
+  --pega-left-timeline-border: 6px;
+
   --pega-space-sm: 5px;
   --pega-space-md: 10px;
+  --pega-space-lg: 20px;
 
   --pega-colour-medium-grey: #dcdcdc;
   --pega-colour-light-grey: hsl(0, 0%, 88%);
   --pega-colour-lighter-grey: #F4F4F4;
+  --pega-colour-blue: #1144eb;
+  --pega-colour-white: #FFF;
   
   --pega-colour-category-1: rgb(75, 40, 102);
   --pega-colour-category-1-transparent: rgba(75, 40, 102, 0.3);
@@ -22,12 +27,35 @@
   --pega-colour-category-7-transparent: rgba(188, 181, 138, 0.3);
 }
 
+/* Start of tag styles */
+
 /* styles.css */
 body, html {
   margin: 0;
   padding: 0;
   height: 100%;
 }
+
+button {
+  cursor: pointer;
+  border:none;
+  padding: var(--pega-space-md);
+}
+
+button.day-btn {
+  border-radius: var(--pega-space-md) 0 0 var(--pega-space-md);
+}
+
+button.week-btn {
+  border-radius:  0 var(--pega-space-md) var(--pega-space-md) 0;
+}
+
+button.selected {
+  color:var(--pega-colour-white);
+  background-color: var(--pega-colour-blue);
+}
+
+/* End of tag styles */
 
 .bold {
   font-weight: 600;
@@ -36,7 +64,13 @@ body, html {
 .week {
   display: flex;
   height: 90vh;
-  margin:20px auto;
+  margin:var(--pega-space-lg) auto;
+  max-width:1400px;
+}
+
+.filters {
+  margin:var(--pega-space-lg) auto;
+  padding:var(--pega-space-lg);
   max-width:1400px;
 }
 
@@ -90,26 +124,25 @@ body, html {
 }
 
 
-
-
-
-
-
-
-
 /* Start of activities styles */
 
 .activities {
   position: relative;
   height:100%;
   width:100%;
-  border-left:7px solid var(--pega-colour-light-grey);
+  border-left:var(--pega-left-timeline-border) solid var(--pega-colour-light-grey);
 }
 
 .activities .activity {
   position: absolute;
   top:14.28%;
-  padding:var(--pega-space-md);
+  padding:var(--pega-space-sm) var(--pega-space-md) 0 var(--pega-space-md);
+  border-radius: 10px;
+}
+
+/* Align the activities to the left or to the right */
+.activities .activity.right {
+  left:50%
 }
 
 .category-1 {
@@ -118,20 +151,24 @@ body, html {
 
 .activity::before {
   content: "";
-  width: 18px;
-  height: 18px;
+  width: 15px;
+  height: 15px;
   background-color: var(--pega-colour-medium-grey);
   border-radius: 50%;
   position: absolute;
-  top: -10px;
-  left: -13px;
+  top: -7px;
+  left: -11px;
+  filter: brightness(0.8);
 }
 
 .activity {
-  width:50%;
+  /* 50% width, minus 2 times the left and right padding and then minus the width of the left border */
+  width:calc(50% - 2* var(--pega-space-md) - var(--pega-left-timeline-border));
   position: relative;
   left:-7px;
-  border-left:7px solid var(--pega-colour-medium-grey);
+  /* Not sure about this one so commented out for the moment */
+  min-height: 25px;
+  border-left:var(--pega-left-timeline-border) solid var(--pega-colour-medium-grey);
 }
 
 .activity h2 {
@@ -139,8 +176,6 @@ body, html {
   font-weight: 400;
   margin:0 0 var(--pega-space-sm) 0;
 }
-
-
 
 .activity p {
   font-size: 12px;
@@ -159,7 +194,7 @@ body, html {
 .activity.category-1 {
   border-right:1px solid var(--pega-colour-category-1);
   border-bottom:1px solid var(--pega-colour-category-1);
-  border-left:7px solid var(--pega-colour-category-1);
+  border-left:var(--pega-left-timeline-border) solid var(--pega-colour-category-1);
   background-color: var(--pega-colour-category-1-transparent);
 }
 
@@ -168,11 +203,37 @@ body, html {
 }
 
 .activity.category-2 {
+  width:calc(100% - 2* var(--pega-space-md));
   border-right:1px solid var(--pega-colour-category-2);
   border-bottom:1px solid var(--pega-colour-category-2);
-  border-left:7px solid var(--pega-colour-category-2);
+  border-left:var(--pega-left-timeline-border) solid var(--pega-colour-category-2);
   background-color: var(--pega-colour-category-2-transparent);
 }
+
+.activity-wrapper.category-2.half-width .activity.category-2 {
+  position: absolute;
+  top:50%;
+  width: 50%;
+  left:50%;
+}
+
+.activity-wrapper.category-2.half-width2 .activity.category-2 {
+  left:0%;
+  width:calc(50% - 2* var(--pega-space-md));
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 .activity.category-3::before {
   background-color: var(--pega-colour-category-3);
@@ -181,7 +242,7 @@ body, html {
 .activity.category-3 {
   border-right:1px solid var(--pega-colour-category-3);
   border-bottom:1px solid var(--pega-colour-category-3);
-  border-left:7px solid var(--pega-colour-category-3);
+  border-left:var(--pega-left-timeline-border) solid var(--pega-colour-category-3);
   background-color: var(--pega-colour-category-3-transparent);
 }
 
@@ -192,7 +253,7 @@ body, html {
 .activity.category-4 {
   border-right:1px solid var(--pega-colour-category-4);
   border-bottom:1px solid var(--pega-colour-category-4);
-  border-left:7px solid var(--pega-colour-category-4);
+  border-left:var(--pega-left-timeline-border) solid var(--pega-colour-category-4);
   background-color: var(--pega-colour-category-4-transparent);
 }
 
@@ -203,7 +264,7 @@ body, html {
 .activity.category-5 {
   border-right:1px solid var(--pega-colour-category-5);
   border-bottom:1px solid var(--pega-colour-category-5);
-  border-left:7px solid var(--pega-colour-category-5);
+  border-left:var(--pega-left-timeline-border) solid var(--pega-colour-category-5);
   background-color: var(--pega-colour-category-5-transparent);
 }
 
@@ -214,7 +275,7 @@ body, html {
 .activity.category-6 {
   border-right:1px solid var(--pega-colour-category-6);
   border-bottom:1px solid var(--pega-colour-category-6);
-  border-left:7px solid var(--pega-colour-category-6);
+  border-left:var(--pega-left-timeline-border) solid var(--pega-colour-category-6);
   background-color: var(--pega-colour-category-6-transparent);
 }
 
@@ -225,8 +286,60 @@ body, html {
 .activity.category-7 {
   border-right:1px solid var(--pega-colour-category-7);
   border-bottom:1px solid var(--pega-colour-category-7);
-  border-left:7px solid var(--pega-colour-category-7);
+  border-left:var(--pega-left-timeline-border) solid var(--pega-colour-category-7);
   background-color: var(--pega-colour-category-7-transparent);
 }
+
+/* Start of list activities styles */
+
+/* TODO - instead of hiding this, make it conditionaly render in the component itself */
+main.list .time-lines, main.list .activity::before {
+  display:none;
+}
+
+main.list .activities {
+  border:none;
+}
+
+main.list .activity {
+  width:calc(50% - 2* var(--pega-space-lg) - var(--pega-left-timeline-border));
+  position:initial;
+  height:auto!important;
+  padding: var(--pega-space-lg);
+  margin: 0 0 var(--pega-space-lg) 0;
+}
+
+main.list .activity h2 {
+  font-size:22px;
+  font-weight: 400;
+  margin:0 0 var(--pega-space-md) 0;
+}
+
+main.list .activity h3 {
+  font-size:18px;
+  font-weight: 300;
+  margin:0 0 var(--pega-space-sm) 0;
+}
+
+main.list .activity p {
+  font-size:14px;
+}
+
+main.list .activity.right {
+  position:initial;
+  margin: 0 0 var(--pega-space-lg) var(--pega-space-lg);
+}
+
+main.list .activity-wrapper.list.right  {
+  position: absolute;
+  left:50%;
+  width: 50%;
+}
+
+main.list .activity-wrapper.list.right .activity{
+  width:100%
+}
+
+/* End of list activities styles */
 
 /* End of activities styles */
