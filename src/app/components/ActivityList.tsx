@@ -4,6 +4,10 @@ import { extractFormattedTime } from "../utils/extractFormattedTime";
 
 const ActivityList: React.FC<ActivityListProps> = ({ selectedDate, timeDifference, activities, oneMinuteOfHeight, viewType }) => {
 
+  // TODO - Move this logic to its own file
+  // and wrap it up into 'full width logic' as a props option on the component so if we don't like it we can turn it off
+  // as it's hard coded to category-2 - then this could be developed in to selecting a dynamic category where the user can
+  // pick which category they want to be full width - do that if I have time
   useEffect(() => {
     const category2Elements = document.querySelectorAll('.activity-wrapper.category-2');
 

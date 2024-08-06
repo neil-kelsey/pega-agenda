@@ -10,9 +10,8 @@ const Week: React.FC<WeekProps> = ({ uniqueDates, timeDifference, weekEarliestTi
   const activities = data.activities;
   const { updatedActivities, oneMinuteOfHeight } = calculateActivityPositions(activities, uniqueDates, timeDifference, weekEarliestTime);
   
-  console.log("NeilTest - week - updatedActivities", updatedActivities);
-
   // TODO if there were no overlaps we need to know
+  // TODO move this logic to its own file
 
 const addAlignmentToActivities = (activities) => {
   // Helper function to parse ISO string to Date
@@ -35,7 +34,6 @@ const addAlignmentToActivities = (activities) => {
       const nextStartTime = parseTime(nextActivity.startTime);
       const nextEndTime = parseTime(nextActivity.endTime);
 
-
       if ((nextEndTime <= currentEndTime) || (nextStartTime <= currentStartTime)) {
         activity.alignment = "right";
         nextActivity.alignment = "left";
@@ -44,7 +42,6 @@ const addAlignmentToActivities = (activities) => {
   });
   return activities;
 };
-
 
   const alignedActivities = addAlignmentToActivities(updatedActivities);
   console.log("NeilTest - week - alignedActivities", alignedActivities);
