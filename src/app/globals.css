@@ -4,6 +4,9 @@
   --pega-space-sm: 5px;
   --pega-space-md: 10px;
   --pega-space-lg: 20px;
+  --pega-space-xl: 30px;
+  --pega-space-xxl: 40px;
+  --pega-space-xxxl: 70px;
 
   --pega-colour-medium-grey: #dcdcdc;
   --pega-colour-light-grey: hsl(0, 0%, 88%);
@@ -29,7 +32,6 @@
 
 /* Start of tag styles */
 
-/* styles.css */
 body, html {
   margin: 0;
   padding: 0;
@@ -37,9 +39,11 @@ body, html {
 }
 
 button {
+  font-size:16px;
   cursor: pointer;
   border:none;
-  padding: var(--pega-space-md);
+  padding: 13px 25px;
+  background-color: var(--pega-colour-light-grey);
 }
 
 button.day-btn {
@@ -55,23 +59,85 @@ button.selected {
   background-color: var(--pega-colour-blue);
 }
 
+select {
+  font-size:16px;
+  font-weight: 500;
+  padding: var(--pega-space-sm) var(--pega-space-md);
+  height:44px;
+  background-color: var(--pega-colour-lighter-grey);
+  border-radius: var(--pega-space-md);
+  border: 1px solid var(--pega-colour-medium-grey);
+}
+
+label {
+  font-weight: 500;
+  margin: 0 var(--pega-space-md) 0 0;
+}
+
+input {
+  margin:0 var(--pega-space-md) 0 0;
+}
+
+header {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: var(--pega-space-lg) var(--pega-space-lg) 0 var(--pega-space-lg);
+}
+
+footer {
+  font-size: 14px;
+  max-width: 1250px;
+  margin: 0 auto;
+  padding: var(--pega-space-xl);
+}
+
 /* End of tag styles */
+
+/* Start of universal styles */
 
 .bold {
   font-weight: 600;
 }
 
+.vr {
+  height:42px;
+  border-right:1px solid var(--pega-colour-medium-grey);
+  margin:0 var(--pega-space-xl);
+}
+
+/* End of universal styles */
+
+
+
+/* Start of spacing system */
+
+/* In a fully fledged project I would have classes for everything or import a system
+   For example margin left small would be .ml-sm or padding top medium .pt-md
+   But as this is a pretty small project I'm just going to create them as I need them */
+
+.mr-lg {
+  margin-right: var(--pega-space-lg)
+}
+
+/* End of spacing system */
+
+
+
+
 .week {
   display: flex;
   height: 90vh;
-  margin:var(--pega-space-lg) auto;
+  margin:var(--pega-space-xxxl) auto;
   max-width:1400px;
 }
 
 .filters {
-  margin:var(--pega-space-lg) auto;
+  margin:0 auto var(--pega-space-lg) auto;
   padding:var(--pega-space-lg);
-  max-width:1400px;
+  max-width:1240px;
 }
 
 .time-column {
@@ -86,20 +152,43 @@ button.selected {
   height: 0;
   position: relative;
   bottom:10px;
-  text-align: center; /* Center align text if needed */
+  text-align: center; 
 }
 
 .day {
-  flex: 1; /* Distribute the remaining space equally among .day elements */
+  flex: 1; 
   display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #FFF; /* Optional: background color for days */
+  flex-direction: column; 
+  align-items: stretch; 
+  background-color: #FFF; 
   position: relative;
 }
 
 .day:nth-child(even) {
   background-color: var(--pega-colour-lighter-grey); /* Background color for even days */
+}
+
+.day .day-header {
+  position: relative;
+  top:-70px;
+  width: 100%;
+  text-align: center; 
+  padding: 10px 0;
+  box-sizing: border-box;
+}
+
+.day .day-header span {
+  display: inline-block;
+  width:100%;
+  font-weight: 600;
+}
+
+.day .day-header span.day-of-week {
+  font-size: 12px;
+}
+
+.day .day-header span.day-of-month {
+  font-size: 22px;
 }
 
 .time-lines {
@@ -127,7 +216,7 @@ button.selected {
 /* Start of activities styles */
 
 .activities {
-  position: relative;
+  position: absolute;
   height:100%;
   width:100%;
   border-left:var(--pega-left-timeline-border) solid var(--pega-colour-light-grey);
@@ -170,6 +259,11 @@ button.selected {
   min-height: 25px;
   border-left:var(--pega-left-timeline-border) solid var(--pega-colour-medium-grey);
 }
+
+.activity.full {
+  width:calc(75% - 2* var(--pega-space-md) - var(--pega-left-timeline-border));
+}
+
 
 .activity h2 {
   font-size: 16px;

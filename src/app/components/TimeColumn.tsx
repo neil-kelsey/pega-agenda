@@ -16,6 +16,7 @@ const TimeColumn: React.FC<TimeColumnProps> = ({ earliestTime, timeDifference })
 
   return (
     <div className="time-column">
+        <span className="bold">GMT</span>
       {[...Array(timeDifference)].map((_, index) => (
         <span key={index}>{incrementTime(earliestTime, index)}</span>
       ))}

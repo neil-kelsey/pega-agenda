@@ -46,8 +46,8 @@ export const calculateTimeRange = (activities: Activity[], selectedDateOrDates: 
     const differenceInHoursRoundedUp = Math.ceil(differenceInHours);
 
     // add one for the starting value
-    // I ended up just adding another one for a total of 2 so there's some space at the bottom
-    const differenceInHoursRoundedUpPlusOne = differenceInHoursRoundedUp + 2;
+    // I ended up just adding another one for a total of 3 so there's some space at the top and bottom
+    const differenceInHoursRoundedUpPlusOne = differenceInHoursRoundedUp + 3;
 
     return {
       earliestTime: formattedEarliest,

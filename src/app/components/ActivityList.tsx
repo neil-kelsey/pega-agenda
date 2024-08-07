@@ -5,9 +5,10 @@ import { extractFormattedTime } from "../utils/extractFormattedTime";
 const ActivityList: React.FC<ActivityListProps> = ({ selectedDate, timeDifference, activities, oneMinuteOfHeight, viewType }) => {
 
   // TODO - Move this logic to its own file
-  // and wrap it up into 'full width logic' as a props option on the component so if we don't like it we can turn it off
-  // as it's hard coded to category-2 - then this could be developed in to selecting a dynamic category where the user can
+  // Wrap it up into 'full width logic' as a props option on the component so if we don't like it we can turn it off
+  // as it's hard coded to category-2 - then this could be developed into selecting a dynamic category where the user can
   // pick which category they want to be full width - do that if I have time
+
   useEffect(() => {
     const category2Elements = document.querySelectorAll('.activity-wrapper.category-2');
 
@@ -32,7 +33,10 @@ const ActivityList: React.FC<ActivityListProps> = ({ selectedDate, timeDifferenc
         const endTimeFormatted = extractFormattedTime(activity.endTime);
         return (
           <div key={index} className={viewType === "list" ? "activity-wrapper list " + activity.alignment : "activity-wrapper category-" + activity.category}>
-            <div className={"activity category-" + activity.category + " index-" + index + " " + activity.alignment + " startTime=" + activity.startTime + ", endTime=" + activity.endTime} style={{ top: activity.minutesFromDayStart * oneMinuteOfHeight + "%" , height: `calc(${activity.activityLength * oneMinuteOfHeight}% - 5px)` }}>
+            {/* We calculate the time the activity will render with this - activity.minutesFromDayStart * oneMinuteOfHeight + 60 * oneMinuteOfHeight + "%"
+            The time from day start times by "one minute of height" which is a calculation of what one minute of height will represent on the users screen
+            We then add one minute of height times by 60 which gives us an hour, this is so we have some spacing of one hour at the top which gives a cleaner feel */}
+            <div className={"activity category-" + activity.category + " index-" + index + " " + activity.alignment + " startTime=" + activity.startTime + ", endTime=" + activity.endTime} style={{ top: activity.minutesFromDayStart * oneMinuteOfHeight + 60 * oneMinuteOfHeight + "%" , height: `calc(${activity.activityLength * oneMinuteOfHeight}% - 5px)` }}>
               <div className="activity-container">
                 {viewType === "list" ?
                   <>
