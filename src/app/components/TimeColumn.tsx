@@ -14,10 +14,16 @@ const TimeColumn: React.FC<TimeColumnProps> = ({ earliestTime, timeDifference })
     return date.toTimeString().substring(0, 5);
   };
 
+  // Ensure timeDifference is a valid number and greater than zero
+  const validTimeDifference = Math.max(timeDifference, 1);
+
+  // The first span value is displayed as "GMT" so we need to remove 1
+  const updatedTimeDifference = validTimeDifference - 1;
+
   return (
     <div className="time-column">
         <span className="bold">GMT</span>
-      {[...Array(timeDifference)].map((_, index) => (
+      {[...Array(updatedTimeDifference)].map((_, index) => (
         <span key={index}>{incrementTime(earliestTime, index)}</span>
       ))}
     </div>

@@ -5,17 +5,28 @@ import { extractUniqueDates } from "../utils/extractUniqueDates";
 import { calculateTimeRange } from "../utils/calculateTimeRange";
 import FilterPanel from "./FilterPanel";
 import DayContainer from "./DayContainer";
-import { useAppContext } from "../context/AppContext";
+import { AppProvider, useAppContext } from "../context/AppContext";
+import exampleData from "../data/test-data.json";
+import { EventData } from "../types/activities";
 
 // TODO move this to it's own file
 interface AgendaProps {
-    activityMinHeight: string;
-  }
+  activityMinHeight: string;
+}
 
 const Agenda: React.FC<AgendaProps> = ({ activityMinHeight }) => {
+  return (
+    <AppProvider data={exampleData}>
+      <AgendaContent activityMinHeight={activityMinHeight} />
+    </AppProvider>
+  );
+};
+
+const AgendaContent: React.FC<{ activityMinHeight: string }> = ({ activityMinHeight }) => {
   const { data, selectedDate, setSelectedDate } = useAppContext();
 
-  const uniqueDates: string[] = extractUniqueDates(data.activities);
+  // Check if data is available before extracting unique dates
+  const uniqueDates: string[] = data ? extractUniqueDates(data.activities) : [];
 
   const [earliestTime, setEarliestTime] = useState<string>('');
   const [timeDifference, setTimeDifference] = useState<number>(0);
@@ -37,16 +48,18 @@ const Agenda: React.FC<AgendaProps> = ({ activityMinHeight }) => {
   };
 
   useEffect(() => {
-    if (viewMode === 'day') {
-      const { earliestTime, timeDifference } = calculateTimeRange(data.activities, selectedDate);
-      setEarliestTime(earliestTime);
-      setTimeDifference(timeDifference);
-    } else {
-      const { weekTimeDifference = 0, weekEarliestTime = '' } = calculateTimeRange(data.activities, uniqueDates);
-      setWeekTimeDifference(weekTimeDifference);
-      setWeekEarliestTime(weekEarliestTime);
+    if (data) {
+      if (viewMode === 'day') {
+        const { earliestTime, timeDifference } = calculateTimeRange(data.activities, selectedDate);
+        setEarliestTime(earliestTime);
+        setTimeDifference(timeDifference);
+      } else {
+        const { weekTimeDifference = 0, weekEarliestTime = '' } = calculateTimeRange(data.activities, uniqueDates);
+        setWeekTimeDifference(weekTimeDifference);
+        setWeekEarliestTime(weekEarliestTime);
+      }
     }
-  }, [selectedDate, data.activities, uniqueDates]);
+  }, [selectedDate, data, uniqueDates]);
 
   return (
     <main className={`${viewType === 'list' ? "list" : "calendar"}`} style={{ '--activity-min-height': activityMinHeight } as React.CSSProperties}>

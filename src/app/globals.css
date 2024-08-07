@@ -399,6 +399,8 @@ main.list .activities {
   position: initial;
   height:initial;
   width: initial;
+  border:none;
+  margin:0 var(--pega-space-md);
 }
 
 main.list .day {
@@ -409,23 +411,39 @@ main.list .activity::before {
   display:none;
 }
 
-main.list .activities {
-  border:none;
-  margin:0 var(--pega-space-md);
+main.list .activity-wrapper.list.left, main.list .activity-wrapper.list.right  {
+  width:calc(50% - 5px);
 }
 
+.activity-wrapper.category-2.list.half-width {
+  position: absolute;
+}
 
+.activity-wrapper.category-2.list.half-width .activity.category-2 {
+  position: relative;
+  width:calc(100% - 2* var(--pega-space-lg) - 10px - var(--pega-left-timeline-border));
+  left:100%;
+  top:0px!important;
+}
 
-main.list .activity {
-  width:calc(50% - 2* var(--pega-space-lg) - var(--pega-left-timeline-border));
-  position:initial;
-  height:auto!important;
-  padding: var(--pega-space-lg);
-  margin: 0 0 var(--pega-space-lg) 0;
+.activity-wrapper.category-2.list.half-width2 .activity.category-2 {
+  position: relative;
+  width:calc(100% - 2* var(--pega-space-lg) - var(--pega-left-timeline-border));
+  
+}
+
+main.list .activity-wrapper.list.right  {
+  position: absolute;
+  width:calc(50% - 15px);
+  left:calc(50% + 5px);
 }
 
 main.list .activity {
   width:calc(100% - 2* var(--pega-space-lg) - var(--pega-left-timeline-border));
+  position:initial;
+  height:auto!important;
+  padding: var(--pega-space-lg);
+  margin: 0 0 var(--pega-space-lg) 0;
 }
 
 main.list .activity h2 {
@@ -446,17 +464,7 @@ main.list .activity p {
 
 main.list .activity.right {
   position:initial;
-  margin: 0 0 var(--pega-space-lg) var(--pega-space-lg);
-}
-
-main.list .activity-wrapper.list.right  {
-  position: absolute;
-  left:50%;
-  width: 50%;
-}
-
-main.list .activity-wrapper.list.right .activity{
-  width:100%
+  margin: 0 0 var(--pega-space-lg) 0;
 }
 
 /* End of list activities styles */
