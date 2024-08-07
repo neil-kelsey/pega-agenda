@@ -1,4 +1,5 @@
 :root {
+  --activity-min-height: 0px;
   --pega-left-timeline-border: 6px;
 
   --pega-space-sm: 5px;
@@ -13,6 +14,7 @@
   --pega-colour-lighter-grey: #F4F4F4;
   --pega-colour-blue: #1144eb;
   --pega-colour-white: #FFF;
+  --pega-colour-white-transparent: rgba(255, 255, 255, 0);;
   
   --pega-colour-category-1: rgb(75, 40, 102);
   --pega-colour-category-1-transparent: rgba(75, 40, 102, 0.3);
@@ -255,8 +257,7 @@ footer {
   width:calc(50% - 2* var(--pega-space-md) - var(--pega-left-timeline-border));
   position: relative;
   left:-7px;
-  /* Not sure about this one so commented out for the moment */
-  min-height: 25px;
+  min-height: var(--activity-min-height);
   border-left:var(--pega-left-timeline-border) solid var(--pega-colour-medium-grey);
 }
 
@@ -297,11 +298,15 @@ footer {
 }
 
 .activity.category-2 {
-  width:calc(100% - 2* var(--pega-space-md));
+  width:calc(100% - 2* var(--pega-space-md) - var(--pega-left-timeline-border));
   border-right:1px solid var(--pega-colour-category-2);
   border-bottom:1px solid var(--pega-colour-category-2);
   border-left:var(--pega-left-timeline-border) solid var(--pega-colour-category-2);
   background-color: var(--pega-colour-category-2-transparent);
+}
+
+.activity-wrapper.category-1, .activity-wrapper.category-2, .activity-wrapper.category-3, .activity-wrapper.category-4, .activity-wrapper.category-5, .activity-wrapper.category-6, .activity-wrapper.category-7 {
+  background-color: var(--pega-colour-white-transparent);
 }
 
 .activity-wrapper.category-2.half-width .activity.category-2 {
@@ -386,14 +391,30 @@ footer {
 
 /* Start of list activities styles */
 
-/* TODO - instead of hiding this, make it conditionaly render in the component itself */
-main.list .time-lines, main.list .activity::before {
+main.list .week {
+  height:initial;
+}
+
+main.list .activities {
+  position: initial;
+  height:initial;
+  width: initial;
+}
+
+main.list .day {
+  border-top:1px solid var(--pega-colour-light-grey);
+}
+
+main.list .activity::before {
   display:none;
 }
 
 main.list .activities {
   border:none;
+  margin:0 var(--pega-space-md);
 }
+
+
 
 main.list .activity {
   width:calc(50% - 2* var(--pega-space-lg) - var(--pega-left-timeline-border));
@@ -401,6 +422,10 @@ main.list .activity {
   height:auto!important;
   padding: var(--pega-space-lg);
   margin: 0 0 var(--pega-space-lg) 0;
+}
+
+main.list .activity {
+  width:calc(100% - 2* var(--pega-space-lg) - var(--pega-left-timeline-border));
 }
 
 main.list .activity h2 {

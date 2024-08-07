@@ -1,5 +1,6 @@
 import { Activity } from "../types/activities";
 
+// TODO latestTime isn't used, shall we remove?
 interface TimeRangeResult {
   earliestTime: string;
   latestTime: string;
@@ -14,10 +15,6 @@ export const calculateTimeRange = (activities: Activity[], selectedDateOrDates: 
     dates.some(date => activity.startTime.startsWith(date))
   );
 
-  console.log("NeilTest - timeTest - activities", activities);
-
-  console.log("NeilTest - timeTest - selectedDateOrDates", selectedDateOrDates);
-
   if (activitiesForSelectedDates.length > 0) {
     // We need to figure out the earliest time and latest time in the data
     // So we know the time range we want to display
@@ -29,9 +26,6 @@ export const calculateTimeRange = (activities: Activity[], selectedDateOrDates: 
     // Formatting the times to be only hours and minutes
     const formattedEarliest = earliest.substring(0, 5);
     const formattedLatest = latest.substring(0, 5);
-
-    console.log("NeilTest - timeTest - formattedEarliest", formattedEarliest);
-    console.log("NeilTest - timeTest - formattedLatest", formattedLatest);
 
     //TODO - I don't like that we go from a string, then to a date value which is 1970 just to calculate difference
 
@@ -46,7 +40,8 @@ export const calculateTimeRange = (activities: Activity[], selectedDateOrDates: 
     const differenceInHoursRoundedUp = Math.ceil(differenceInHours);
 
     // add one for the starting value
-    // I ended up just adding another one for a total of 3 so there's some space at the top and bottom
+    // I ended up just adding another few for a total of 3 so there's some space at the top and bottom
+    // in ActivityList I add an hour to the top of all the values to shift them down so it looks cleaner
     const differenceInHoursRoundedUpPlusOne = differenceInHoursRoundedUp + 3;
 
     return {

@@ -1,4 +1,4 @@
-export interface WeekProps {
+export interface DayContainerProps {
     uniqueDates: string[];
     timeDifference: number;
     weekEarliestTime: string;

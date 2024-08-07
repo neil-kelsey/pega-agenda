@@ -10,6 +10,7 @@ const ActivityList: React.FC<ActivityListProps> = ({ selectedDate, timeDifferenc
   // pick which category they want to be full width - do that if I have time
 
   useEffect(() => {
+    console.log("NeilTest - ActivityList")
     const category2Elements = document.querySelectorAll('.activity-wrapper.category-2');
 
     category2Elements.forEach((el, index) => {
@@ -32,11 +33,11 @@ const ActivityList: React.FC<ActivityListProps> = ({ selectedDate, timeDifferenc
         const startTimeFormatted = extractFormattedTime(activity.startTime);
         const endTimeFormatted = extractFormattedTime(activity.endTime);
         return (
-          <div key={index} className={viewType === "list" ? "activity-wrapper list " + activity.alignment : "activity-wrapper category-" + activity.category}>
+          <div key={index} className={viewType === "list" ? "activity-wrapper category-" + activity.category + " index-" + index + " list " + activity.alignment : "activity-wrapper category-" + activity.category}>
             {/* We calculate the time the activity will render with this - activity.minutesFromDayStart * oneMinuteOfHeight + 60 * oneMinuteOfHeight + "%"
             The time from day start times by "one minute of height" which is a calculation of what one minute of height will represent on the users screen
             We then add one minute of height times by 60 which gives us an hour, this is so we have some spacing of one hour at the top which gives a cleaner feel */}
-            <div className={"activity category-" + activity.category + " index-" + index + " " + activity.alignment + " startTime=" + activity.startTime + ", endTime=" + activity.endTime} style={{ top: activity.minutesFromDayStart * oneMinuteOfHeight + 60 * oneMinuteOfHeight + "%" , height: `calc(${activity.activityLength * oneMinuteOfHeight}% - 5px)` }}>
+            <div className={"activity category-" + activity.category + " index-" + index + " " + activity.alignment} style={{ top: activity.minutesFromDayStart * oneMinuteOfHeight + 60 * oneMinuteOfHeight + "%" , height: `calc(${activity.activityLength * oneMinuteOfHeight}% - 5px)` }}>
               <div className="activity-container">
                 {viewType === "list" ?
                   <>
