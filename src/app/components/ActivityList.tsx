@@ -2,36 +2,18 @@ import React, { useEffect, useState } from "react";
 import { ActivityListProps } from "../types/activityListProps";
 import { extractFormattedTime } from "../utils/extractFormattedTime";
 import { formatTimeWithAmPm } from "../utils/formatTimeWithAmPm";
+import { applyCategoryStyles } from "../utils/applyCategoryStyles";
 import Modal from "./Modal";
 
-const ActivityList: React.FC<ActivityListProps> = ({ selectedDate, timeDifference, activities, oneMinuteOfHeight, viewType }) => {
+const ActivityList: React.FC<ActivityListProps> = ({ activities, oneMinuteOfHeight, viewType }) => {
   const [activeModal, setActiveModal] = useState<number | null>(null);
-  console.log("NeilTest - ActivityList - activeModal", activeModal)
-  // TODO - Move this logic to its own file
-  // Wrap it up into 'full width logic' as a props option on the component so if we don't like it we can turn it off
-  // as it's hard coded to category-2 - then this could be developed into selecting a dynamic category where the user can
-  // pick which category they want to be full width - do that if I have time
 
   useEffect(() => {
-    const category2Elements = document.querySelectorAll('.activity-wrapper.category-2');
-
-    category2Elements.forEach((el, index) => {
-      // Remove any existing half-width classes to ensure clean state
-      el.classList.remove('half-width');
-    });
-
-    for (let i = 0; i < category2Elements.length - 1; i++) {
-      if (category2Elements[i].nextElementSibling === category2Elements[i + 1]) {
-        category2Elements[i].classList.add('half-width');
-        category2Elements[i + 1].classList.add('half-width2');
-        i++; // Skip the next element as it's already been processed
-      }
-    }
-  }, [activities]); // Adding activities as dependency to run this effect whenever activities change
+    applyCategoryStyles();
+  }, [activities]);
 
   const activityClickHandler = (index: number) => {
     setActiveModal(activeModal === index ? null : index);
-    console.log("NeilTest - ActivityList - activityClickHandler", index);
   };
 
   return (

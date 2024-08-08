@@ -1,9 +1,7 @@
 import { Activity } from "../types/activities";
 
-// TODO latestTime isn't used, shall we remove?
 interface TimeRangeResult {
   earliestTime: string;
-  latestTime: string;
   timeDifference: number;
   weekTimeDifference?: number;
   weekEarliestTime?: string;
@@ -27,8 +25,6 @@ export const calculateTimeRange = (activities: Activity[], selectedDateOrDates: 
     const formattedEarliest = earliest.substring(0, 5);
     const formattedLatest = latest.substring(0, 5);
 
-    //TODO - I don't like that we go from a string, then to a date value which is 1970 just to calculate difference
-
     // Next we need to calculate the time range
     // Calculate the time difference in hours
     const earliestDate = new Date(`1970-01-01T${earliest}`);
@@ -46,7 +42,6 @@ export const calculateTimeRange = (activities: Activity[], selectedDateOrDates: 
 
     return {
       earliestTime: formattedEarliest,
-      latestTime: formattedLatest,
       timeDifference: differenceInHoursRoundedUpPlusOne,
       weekTimeDifference: differenceInHoursRoundedUpPlusOne,
       weekEarliestTime: formattedEarliest,
@@ -54,7 +49,6 @@ export const calculateTimeRange = (activities: Activity[], selectedDateOrDates: 
   } else {
     return {
       earliestTime: '',
-      latestTime: '',
       timeDifference: 0,
       weekTimeDifference: 0,
       weekEarliestTime: '',

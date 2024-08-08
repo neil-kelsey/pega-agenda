@@ -6,13 +6,7 @@ import { calculateTimeRange } from "../utils/calculateTimeRange";
 import FilterPanel from "./FilterPanel";
 import DayContainer from "./DayContainer";
 import { AppProvider, useAppContext } from "../context/AppContext";
-import { EventData } from "../types/activities";
-
-// TODO move this to it's own file
-interface AgendaProps {
-  activityMinHeight?: string;
-  data: EventData;
-}
+import { AgendaProps } from "../types/agendaProps";
 
 const Agenda: React.FC<AgendaProps> = ({ activityMinHeight = "0px", data }) => {
   return (
