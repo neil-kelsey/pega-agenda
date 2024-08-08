@@ -59,7 +59,7 @@ const AgendaContent: React.FC<{ activityMinHeight: string; fullWidth: boolean }>
   const fullWidthValue = fullWidth ? '100%' : '75%';
 
   return (
-    // style attribute overwrites activityMinHeight variable in stylesheet default value if it exists as prop value on <Agenda />
+    // style attribute overwrites --activity-min-height and --full-width variable in stylesheet default value if they exists as prop value on <Agenda />
     <main className={`${viewType === 'list' ? "list" : "calendar"}`} style={{ '--activity-min-height': activityMinHeight, '--full-width': fullWidthValue } as React.CSSProperties}>
       <FilterPanel
         viewMode={viewMode}

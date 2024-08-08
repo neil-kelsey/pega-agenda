@@ -39,3 +39,5 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 Fully width functionality is fun and useful but hard coded to category-2 - expand this to be dynamic
 Category styling again is hard coded - I'd like to give options to set your own colours for your categories
+colour guide modal
+select list styling

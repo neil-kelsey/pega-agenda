@@ -279,8 +279,7 @@ footer {
 }
 
 .activity {
-  /* 50% width, minus 2 times the left and right padding and then minus the width of the left border */
-  width:calc(50% - 2* var(--pega-space-md) - var(--pega-left-timeline-border));
+  width:calc(50% - 2* var(--pega-space-md) - 2* var(--pega-left-timeline-border));
   position: relative;
   left:-7px;
   min-height: var(--activity-min-height);
@@ -338,13 +337,13 @@ footer {
 .activity-wrapper.category-2.half-width .activity.category-2 {
   position: absolute;
   top:50%;
-  width: 50%;
+  width:calc(50% - 2* var(--pega-space-md) - 2* var(--pega-left-timeline-border));
   left:50%;
 }
 
 .activity-wrapper.category-2.half-width2 .activity.category-2 {
-  left:0%;
-  width:calc(50% - 2* var(--pega-space-md));
+  left:calc(0% - 7px);
+  width:calc(50% - 2* var(--pega-space-md) - 2* var(--pega-left-timeline-border));
 }
 
 .activity.category-3::before, .activity.category-3 button {

@@ -10,11 +10,10 @@ const HomeContent: React.FC = () => {
   return (
     <>
       <Header />
-      {/* TODO - colour guide modal */}
-      {/* TODO - select list styling */}
       {/* TODO - BONUS - filter functionality */}
       {/* TODO - CSS to modules */}
-      <Agenda fullWidth={false} activityMinHeight="25px" data={exampleData} />
+      {/* TODO rename half-width 2 */}
+      <Agenda fullWidth={true} activityMinHeight="25px" data={exampleData} />
       <Footer />
     </>
   );
