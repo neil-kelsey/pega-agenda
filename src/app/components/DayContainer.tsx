@@ -16,7 +16,7 @@ const DayContainer: React.FC<DayContainerProps> = ({ uniqueDates, timeDifference
       {uniqueDates.map((date, index) => {
         const activitiesForDate = updatedActivities.filter(activity => activity.startTime.startsWith(date));
         return (
-          <Day timeDifference={timeDifference} date={date} activities={activitiesForDate} oneMinuteOfHeight={oneMinuteOfHeight} viewType={viewType} />
+          <Day key={index} timeDifference={timeDifference} date={date} activities={activitiesForDate} oneMinuteOfHeight={oneMinuteOfHeight} viewType={viewType} />
         );
       })}
     </div>
