@@ -1,14 +1,6 @@
 import React from "react";
 import styles from "./Modal.module.css";
-import { Activity } from "../types/activities";
-
-// TODO move this to its own file
-interface ModalProps {
-  activity: Activity;
-  startTimeFormatted: string;
-  endTimeFormatted: string;
-  onClose: () => void;
-}
+import { ModalProps } from "../types/modalProps";
 
 const Modal: React.FC<ModalProps> = ({ activity, startTimeFormatted, endTimeFormatted, onClose }) => {
   return (
