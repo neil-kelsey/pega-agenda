@@ -512,6 +512,11 @@ main.list .activity.right {
 
   .filters {
     padding:var(--pega-space-md);
+    margin:0;
+  }
+
+  main.list .week {
+    margin: 0 auto var(--pega-space-xxxl) auto;
   }
 
   main.list .day .day-header {
@@ -519,8 +524,8 @@ main.list .activity.right {
   }
 
   main.list .activity {
-    width: calc(100% - 2* var(--pega-space-sm) - var(--pega-left-timeline-border));
-    padding: var(--pega-space-sm)
+    width: calc(100% - 2* var(--pega-space-md) - var(--pega-left-timeline-border));
+    padding: var(--pega-space-md)
   }
 
   main.list .activity h2 {
@@ -573,6 +578,11 @@ main.list .activity.right {
 
   .filters {
     padding:var(--pega-space-md);
+    margin:0;
+  }
+
+  main.list .week {
+    margin: 0 auto var(--pega-space-xxxl) auto;
   }
 
   main.list .day .day-header {
@@ -634,6 +644,15 @@ main.list .activity.right {
   .time-column {
     width:40px;
     font-size: 10px;
+  }
+
+  .filters {
+    padding:var(--pega-space-md);
+    margin:0;
+  }
+
+  main.list .week {
+    margin: 0 auto var(--pega-space-xxxl) auto;
   }
 
   main.list .activity {

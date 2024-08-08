@@ -11,6 +11,7 @@ const HomeContent: React.FC = () => {
     <>
       <Header />
       {/* TODO - CSS to modules */}
+      {/* TODO - filter panel responsive styling */}
       <Agenda fullWidth={true} activityMinHeight="25px" data={exampleData} />
       <Footer />
     </>
