@@ -13,7 +13,6 @@ const ActivityList: React.FC<ActivityListProps> = ({ selectedDate, timeDifferenc
   // pick which category they want to be full width - do that if I have time
 
   useEffect(() => {
-    console.log("NeilTest - ActivityList")
     const category2Elements = document.querySelectorAll('.activity-wrapper.category-2');
 
     category2Elements.forEach((el, index) => {
@@ -44,8 +43,8 @@ const ActivityList: React.FC<ActivityListProps> = ({ selectedDate, timeDifferenc
         const activityLength = activity.activityLength ?? 0;
 
         return (
-          <>
-            <div key={index} className={viewType === "list" ? "activity-wrapper category-" + activity.category + " index-" + index + " list " + activity.alignment : "activity-wrapper category-" + activity.category}>
+          <div key={index}>
+            <div className={viewType === "list" ? "activity-wrapper category-" + activity.category + " index-" + index + " list " + activity.alignment : "activity-wrapper category-" + activity.category}>
             {/* We calculate the time the activity will render with this - activity.minutesFromDayStart * oneMinuteOfHeight + 60 * oneMinuteOfHeight + "%"
             The time from day start times by "one minute of height" which is a calculation of what one minute of height will represent on the users screen
             We then add one minute of height times by 60 which gives us an hour, this is so we have some spacing of one hour at the top which gives a cleaner feel */}
@@ -74,7 +73,7 @@ const ActivityList: React.FC<ActivityListProps> = ({ selectedDate, timeDifferenc
           {activeModal === index && (
             <Modal activity={activity} startTimeFormatted={startTimeFormatted} endTimeFormatted={endTimeFormatted} onClose={() => setActiveModal(null)} />
           )}
-          </>
+          </div>
         );
       })}
     </>
