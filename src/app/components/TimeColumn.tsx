@@ -1,21 +1,8 @@
 import React from "react";
 import { TimeColumnProps } from "../types/timeColumnProps";
+import { incrementTime } from "../utils/incrementTime";
 
 const TimeColumn: React.FC<TimeColumnProps> = ({ earliestTime, timeDifference }) => {
-  console.log("NeilTest - earliestTime test", earliestTime);
-  console.log("NeilTest - earliestTime type of", typeof earliestTime);
-
-  // Function to increment the time by the specified number of hours
-  const incrementTime = (time: string, hours: number): string => {
-    const [hour, minute] = time.split(':').map(Number);
-    const date = new Date();
-    date.setHours(hour + hours);
-    date.setMinutes(minute);
-    return date.toTimeString().substring(0, 5);
-  };
-
-  // TODO - add lines here as a before element
-
   // Ensure timeDifference is a valid number and greater than zero
   const validTimeDifference = Math.max(timeDifference, 1);
 

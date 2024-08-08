@@ -163,6 +163,20 @@ footer {
   text-align: center; 
 }
 
+.time-column span::before {
+  content: "";
+  position: absolute;
+  top: var(--pega-space-md);
+  right: 0;
+  display: inline-block;
+  width: 10px;
+  border-top: 1px solid var(--pega-colour-light-grey);
+}
+
+.time-column span:nth-child(even)::before {
+  top:9px;
+}
+
 .day {
   flex: 1; 
   display: flex;
