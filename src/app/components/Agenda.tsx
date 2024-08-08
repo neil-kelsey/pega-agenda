@@ -6,17 +6,17 @@ import { calculateTimeRange } from "../utils/calculateTimeRange";
 import FilterPanel from "./FilterPanel";
 import DayContainer from "./DayContainer";
 import { AppProvider, useAppContext } from "../context/AppContext";
-import exampleData from "../data/test-data.json";
 import { EventData } from "../types/activities";
 
 // TODO move this to it's own file
 interface AgendaProps {
-  activityMinHeight: string;
+  activityMinHeight?: string;
+  data: EventData;
 }
 
-const Agenda: React.FC<AgendaProps> = ({ activityMinHeight }) => {
+const Agenda: React.FC<AgendaProps> = ({ activityMinHeight = "0px", data }) => {
   return (
-    <AppProvider data={exampleData}>
+    <AppProvider data={data}>
       <AgendaContent activityMinHeight={activityMinHeight} />
     </AppProvider>
   );
@@ -62,6 +62,7 @@ const AgendaContent: React.FC<{ activityMinHeight: string }> = ({ activityMinHei
   }, [selectedDate, data, uniqueDates]);
 
   return (
+    // style attribute overwrites activityMinHeight variable in stylesheet default value if it exists as prop value on <Agenda />
     <main className={`${viewType === 'list' ? "list" : "calendar"}`} style={{ '--activity-min-height': activityMinHeight } as React.CSSProperties}>
         <FilterPanel 
             viewMode={viewMode} 

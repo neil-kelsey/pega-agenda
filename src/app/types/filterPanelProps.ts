@@ -4,6 +4,6 @@ export interface FilterPanelProps {
   selectedDate: string;
   onDateChange: (date: string) => void;
   onViewModeChange: (viewMode: 'day' | 'week') => void;
-  viewType: 'calendar' | 'details'; // New prop
-  onViewTypeChange: (viewType: 'calendar' | 'list') => void; // New prop
+  viewType: 'calendar' | 'list';
+  onViewTypeChange: (viewType: 'calendar' | 'list') => void;
 }

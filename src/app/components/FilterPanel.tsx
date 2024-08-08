@@ -1,5 +1,6 @@
 import { ChangeEvent } from "react";
 import { FilterPanelProps } from "../types/filterPanelProps";
+import { formatDate } from "../utils/formateDate";
 
 const FilterPanel: React.FC<FilterPanelProps> = ({ viewMode, uniqueDates, selectedDate, onDateChange, onViewModeChange, viewType, onViewTypeChange }) => {
   const handleDateChange = (event: ChangeEvent<HTMLSelectElement>) => {
@@ -24,9 +25,12 @@ const FilterPanel: React.FC<FilterPanelProps> = ({ viewMode, uniqueDates, select
         <>
           <label>Select day</label>
           <select onChange={handleDateChange} value={selectedDate}>
-            {uniqueDates.map(date => (
-              <option key={date} value={date}>{date}</option>
-            ))}
+            {uniqueDates.map(date => {
+              const formattedDate = formatDate(date);
+              return (
+                <option key={date} value={date}>{formattedDate.dayOfWeek} {formattedDate.dayOfMonth}</option>
+              );
+            })}
           </select>
           <span className="vr"></span>
         </>
