@@ -35,3 +35,5 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children, data }) => {
     </AppContext.Provider>
   );
 };
+
+export { AppContext };
