@@ -1,5 +1,7 @@
 :root {
   --activity-min-height: 0px;
+  --full-width: 100%;
+
   --pega-left-timeline-border: 6px;
 
   --pega-space-sm: 5px;
@@ -322,7 +324,7 @@ footer {
 }
 
 .activity.category-2 {
-  width:calc(100% - 2* var(--pega-space-md) - var(--pega-left-timeline-border));
+  width:calc(var(--full-width) - 2* var(--pega-space-md) - var(--pega-left-timeline-border));
   border-right:1px solid var(--pega-colour-category-2);
   border-bottom:1px solid var(--pega-colour-category-2);
   border-left:var(--pega-left-timeline-border) solid var(--pega-colour-category-2);

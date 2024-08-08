@@ -1,3 +1,4 @@
+// Agenda.tsx
 "use client";
 
 import React, { useState, useEffect } from "react";
@@ -8,15 +9,15 @@ import DayContainer from "./DayContainer";
 import { AppProvider, useAppContext } from "../context/AppContext";
 import { AgendaProps } from "../types/agendaProps";
 
-const Agenda: React.FC<AgendaProps> = ({ activityMinHeight = "0px", data }) => {
+const Agenda: React.FC<AgendaProps> = ({ activityMinHeight = "0px", data, fullWidth = false }) => {
   return (
     <AppProvider data={data}>
-      <AgendaContent activityMinHeight={activityMinHeight} />
+      <AgendaContent activityMinHeight={activityMinHeight} fullWidth={fullWidth} />
     </AppProvider>
   );
 };
 
-const AgendaContent: React.FC<{ activityMinHeight: string }> = ({ activityMinHeight }) => {
+const AgendaContent: React.FC<{ activityMinHeight: string; fullWidth: boolean }> = ({ activityMinHeight, fullWidth }) => {
   const { data, selectedDate, setSelectedDate } = useAppContext();
 
   // Check if data is available before extracting unique dates
@@ -55,22 +56,24 @@ const AgendaContent: React.FC<{ activityMinHeight: string }> = ({ activityMinHei
     }
   }, [selectedDate, data, uniqueDates]);
 
+  const fullWidthValue = fullWidth ? '100%' : '75%';
+
   return (
     // style attribute overwrites activityMinHeight variable in stylesheet default value if it exists as prop value on <Agenda />
-    <main className={`${viewType === 'list' ? "list" : "calendar"}`} style={{ '--activity-min-height': activityMinHeight } as React.CSSProperties}>
-        <FilterPanel 
-            viewMode={viewMode} 
-            uniqueDates={uniqueDates} 
-            selectedDate={selectedDate} 
-            onDateChange={handleDateChange} 
-            onViewModeChange={handleViewModeChange} 
-            viewType={viewType} 
-            onViewTypeChange={handleViewTypeChange} 
-        />
-        {viewMode === "week" ? 
-            <DayContainer uniqueDates={uniqueDates} timeDifference={weekTimeDifference} weekEarliestTime={weekEarliestTime} viewType={viewType} /> : 
-            <DayContainer uniqueDates={[selectedDate]} timeDifference={timeDifference} weekEarliestTime={earliestTime} viewType={viewType} />
-        }
+    <main className={`${viewType === 'list' ? "list" : "calendar"}`} style={{ '--activity-min-height': activityMinHeight, '--full-width': fullWidthValue } as React.CSSProperties}>
+      <FilterPanel
+        viewMode={viewMode}
+        uniqueDates={uniqueDates}
+        selectedDate={selectedDate}
+        onDateChange={handleDateChange}
+        onViewModeChange={handleViewModeChange}
+        viewType={viewType}
+        onViewTypeChange={handleViewTypeChange}
+      />
+      {viewMode === "week" ?
+        <DayContainer uniqueDates={uniqueDates} timeDifference={weekTimeDifference} weekEarliestTime={weekEarliestTime} viewType={viewType} fullWidth={fullWidth} /> :
+        <DayContainer uniqueDates={[selectedDate]} timeDifference={timeDifference} weekEarliestTime={earliestTime} viewType={viewType} fullWidth={fullWidth} />
+      }
     </main>
   );
 };

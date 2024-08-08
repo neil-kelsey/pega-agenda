@@ -12,10 +12,9 @@ const HomeContent: React.FC = () => {
       <Header />
       {/* TODO - colour guide modal */}
       {/* TODO - select list styling */}
-      {/* TODO - full width toggle functionality too? */}
-      {/* TODO - full width category-2 on list view? */}
       {/* TODO - BONUS - filter functionality */}
-      <Agenda activityMinHeight="25px" data={exampleData} />
+      {/* TODO - CSS to modules */}
+      <Agenda fullWidth={false} activityMinHeight="25px" data={exampleData} />
       <Footer />
     </>
   );
