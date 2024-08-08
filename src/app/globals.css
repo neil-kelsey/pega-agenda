@@ -47,6 +47,7 @@ button {
   cursor: pointer;
   border:none;
   padding: 13px 25px;
+  margin:0 0 var(--pega-space-md) 0;
   background-color: var(--pega-colour-light-grey);
 }
 
@@ -76,7 +77,7 @@ select {
 label {
   font-weight: 500;
   margin: 0 var(--pega-space-md) 0 0;
-  padding: var(--pega-space-sm)
+  padding: var(--pega-space-sm) var(--pega-space-sm) var(--pega-space-sm) 0
 }
 
 input {
@@ -142,6 +143,7 @@ footer {
   height: 90vh;
   margin:var(--pega-space-xxxl) auto;
   max-width:1400px;
+  width:calc(100% - 2* var(--pega-space-md))
 }
 
 .filters {
@@ -482,3 +484,181 @@ main.list .activity.right {
 /* End of list activities styles */
 
 /* End of activities styles */
+
+
+@media (min-width: 1201px) {
+}
+
+@media (min-width: 1025px) and (max-width: 1200px) {
+
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  button {
+    font-size: 12px;
+  }
+
+  button, label, select {
+    font-size: 14px;
+  }
+
+  header {
+    padding: var(--pega-space-md) var(--pega-space-md) 0 var(--pega-space-md);
+  }
+
+  .time-column {
+    width: 60px;
+  }
+
+  .filters {
+    padding:var(--pega-space-md);
+  }
+
+  main.list .day .day-header {
+    position: initial;
+  }
+
+  main.list .activity {
+    width: calc(100% - 2* var(--pega-space-sm) - var(--pega-left-timeline-border));
+    padding: var(--pega-space-sm)
+  }
+
+  main.list .activity h2 {
+    font-size:16px;
+  }
+
+  main.list .activity h3 {
+    font-size:16px;
+  }
+
+  main.list .activity p {
+    font-size:12px;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+
+  main.list .week, main.list .day {
+    display:block
+  }
+
+  button {
+    font-size: 12px;
+  }
+
+  button, label, select {
+    font-size: 14px;
+  }
+
+  input {
+    top:2px;
+    width: 15px;
+    height:15px;
+    margin:0 var(--pega-space-sm) 0 0;
+    padding:10px;
+  }
+
+  header {
+    padding: var(--pega-space-sm) var(--pega-space-sm) 0 var(--pega-space-sm);
+  }
+
+  .vr {
+    margin: var(--pega-space-lg)
+  }
+
+  .time-column {
+    width:50px;
+    font-size: 12px;
+  }
+
+  .filters {
+    padding:var(--pega-space-md);
+  }
+
+  main.list .day .day-header {
+    position: initial;
+  }
+
+  main.list .activity {
+    padding: var(--pega-space-md);
+    width:calc(100% - 2* var(--pega-space-md) - var(--pega-left-timeline-border));
+  }
+
+  main.list .activity h2 {
+    font-size:16px;
+  }
+
+  main.list .activity h3 {
+    font-size:14px;
+  }
+
+  main.list .activity p {
+    font-size:11px;
+  }
+
+  .day .day-header span.day-of-month {
+    font-size: 18px;
+  }
+
+  footer {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+
+  main.list .week, main.list .day {
+    display:block
+  }
+
+  button {
+    font-size: 12px;
+  }
+
+  button, label, select {
+    font-size: 14px;
+  }
+
+  input {
+    top:2px;
+    width: 15px;
+    height:15px;
+    margin:0 var(--pega-space-sm) 0 0;
+    padding:10px;
+  }
+
+  .vr {
+    margin: var(--pega-space-lg)
+  }
+
+  .time-column {
+    width:40px;
+    font-size: 10px;
+  }
+
+  main.list .activity {
+    padding: var(--pega-space-md);
+    width:calc(100% - 2* var(--pega-space-md) - var(--pega-left-timeline-border));
+  }
+
+  main.list .activity h2 {
+    font-size:16px;
+  }
+
+  main.list .activity h3 {
+    font-size:14px;
+  }
+
+  main.list .activity p {
+    font-size:11px;
+  }
+
+  .day .day-header span.day-of-month {
+    font-size: 18px;
+  }
+
+  footer {
+    font-size: 12px;
+  }
+
+}

@@ -35,9 +35,18 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
+## Running the tests
+
+```bash
+npm test
+```
+
 ## Brain dump of things to improve
 
 Fully width functionality is fun and useful but hard coded to category-2 - expand this to be dynamic
 Category styling again is hard coded - I'd like to give options to set your own colours for your categories
 colour guide modal
 select list styling
+filter functionality
+Boxes match height in list view
+Reusable testing data - I've recreated lots of the test data in the tests, would be nice to have a universal test data set

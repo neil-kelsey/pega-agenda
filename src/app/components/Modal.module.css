@@ -39,6 +39,7 @@
     position: initial!important;
     width:calc(100% - 2* var(--pega-space-lg) - var(--pega-left-timeline-border))!important;
     padding: var(--pega-space-lg)!important;
+    margin:0!important;
   }
 
   .modalActivity h2 {
