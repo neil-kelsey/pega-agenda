@@ -10,8 +10,8 @@ const HomeContent: React.FC = () => {
   return (
     <>
       <Header />
-      {/* TODO - modal */}
       {/* TODO - colour guide modal */}
+      {/* TODO - select list styling */}
       {/* TODO - full width toggle functionality too? */}
       {/* TODO - full width category-2 on list view? */}
       {/* TODO - BONUS - filter functionality */}

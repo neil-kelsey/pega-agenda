@@ -74,10 +74,16 @@ select {
 label {
   font-weight: 500;
   margin: 0 var(--pega-space-md) 0 0;
+  padding: var(--pega-space-sm)
 }
 
 input {
+  position: relative;
+  top:3px;
+  width:var(--pega-space-lg);
+  height:var(--pega-space-lg);
   margin:0 var(--pega-space-md) 0 0;
+  padding:10px;
 }
 
 header {
@@ -231,6 +237,10 @@ footer {
   border-radius: 10px;
 }
 
+.activities .activity:hover {
+  cursor: pointer;
+}
+
 /* Align the activities to the left or to the right */
 .activities .activity.right {
   left:50%
@@ -282,7 +292,7 @@ footer {
   overflow: hidden;
 }
 
-.activity.category-1::before {
+.activity.category-1::before, .activity.category-1 button {
   background-color: var(--pega-colour-category-1);
 }
 
@@ -293,7 +303,7 @@ footer {
   background-color: var(--pega-colour-category-1-transparent);
 }
 
-.activity.category-2::before {
+.activity.category-2::before, .activity.category-2 button {
   background-color: var(--pega-colour-category-2);
 }
 
@@ -321,20 +331,7 @@ footer {
   width:calc(50% - 2* var(--pega-space-md));
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-.activity.category-3::before {
+.activity.category-3::before, .activity.category-3 button {
   background-color: var(--pega-colour-category-3);
 }
 
@@ -345,7 +342,7 @@ footer {
   background-color: var(--pega-colour-category-3-transparent);
 }
 
-.activity.category-4::before {
+.activity.category-4::before, .activity.category-4 button {
   background-color: var(--pega-colour-category-4);
 }
 
@@ -356,7 +353,7 @@ footer {
   background-color: var(--pega-colour-category-4-transparent);
 }
 
-.activity.category-5::before {
+.activity.category-5::before, .activity.category-5 button {
   background-color: var(--pega-colour-category-5);
 }
 
@@ -367,7 +364,7 @@ footer {
   background-color: var(--pega-colour-category-5-transparent);
 }
 
-.activity.category-6::before {
+.activity.category-6::before, .activity.category-6 button {
   background-color: var(--pega-colour-category-6);
 }
 
@@ -378,7 +375,7 @@ footer {
   background-color: var(--pega-colour-category-6-transparent);
 }
 
-.activity.category-7::before {
+.activity.category-7::before, .activity.category-7 button {
   background-color: var(--pega-colour-category-7);
 }
 

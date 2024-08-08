@@ -14,6 +14,8 @@ const TimeColumn: React.FC<TimeColumnProps> = ({ earliestTime, timeDifference })
     return date.toTimeString().substring(0, 5);
   };
 
+  // TODO - add lines here as a before element
+
   // Ensure timeDifference is a valid number and greater than zero
   const validTimeDifference = Math.max(timeDifference, 1);
 

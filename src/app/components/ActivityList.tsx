@@ -1,9 +1,12 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { ActivityListProps } from "../types/activityListProps";
 import { extractFormattedTime } from "../utils/extractFormattedTime";
+import { formatTimeWithAmPm } from "../utils/formatTimeWithAmPm";
+import Modal from "./Modal";
 
 const ActivityList: React.FC<ActivityListProps> = ({ selectedDate, timeDifference, activities, oneMinuteOfHeight, viewType }) => {
-
+  const [activeModal, setActiveModal] = useState<number | null>(null);
+  console.log("NeilTest - ActivityList - activeModal", activeModal)
   // TODO - Move this logic to its own file
   // Wrap it up into 'full width logic' as a props option on the component so if we don't like it we can turn it off
   // as it's hard coded to category-2 - then this could be developed into selecting a dynamic category where the user can
@@ -27,20 +30,32 @@ const ActivityList: React.FC<ActivityListProps> = ({ selectedDate, timeDifferenc
     }
   }, [activities]); // Adding activities as dependency to run this effect whenever activities change
 
+  const activityClickHandler = (index: number) => {
+    setActiveModal(activeModal === index ? null : index);
+    console.log("NeilTest - ActivityList - activityClickHandler", index);
+  };
+
   return (
     <>
       {activities.map((activity, index) => {
-        const startTimeFormatted = extractFormattedTime(activity.startTime);
-        const endTimeFormatted = extractFormattedTime(activity.endTime);
+        const startTimeFormatted = formatTimeWithAmPm(extractFormattedTime(activity.startTime));
+        const endTimeFormatted = formatTimeWithAmPm(extractFormattedTime(activity.endTime));
         const minutesFromDayStart = activity.minutesFromDayStart ?? 0;
         const activityLength = activity.activityLength ?? 0;
 
         return (
-          <div key={index} className={viewType === "list" ? "activity-wrapper category-" + activity.category + " index-" + index + " list " + activity.alignment : "activity-wrapper category-" + activity.category}>
+          <>
+            <div key={index} className={viewType === "list" ? "activity-wrapper category-" + activity.category + " index-" + index + " list " + activity.alignment : "activity-wrapper category-" + activity.category}>
             {/* We calculate the time the activity will render with this - activity.minutesFromDayStart * oneMinuteOfHeight + 60 * oneMinuteOfHeight + "%"
             The time from day start times by "one minute of height" which is a calculation of what one minute of height will represent on the users screen
             We then add one minute of height times by 60 which gives us an hour, this is so we have some spacing of one hour at the top which gives a cleaner feel */}
-            <div className={"activity category-" + activity.category + " index-" + index + " " + activity.alignment} style={{ top: minutesFromDayStart * oneMinuteOfHeight + 60 * oneMinuteOfHeight + "%" , height: `calc(${activityLength * oneMinuteOfHeight}% - 5px)` }}>
+            <div 
+              onClick={() => activityClickHandler(index)} 
+              className={`activity category-${activity.category} index-${index} ${activity.alignment}`} 
+              style={{ top: `${minutesFromDayStart * oneMinuteOfHeight + 60 * oneMinuteOfHeight}%`, height: `calc(${activityLength * oneMinuteOfHeight}% - 5px)` }}
+              role="button" 
+              tabIndex={0}
+            >
               <div className="activity-container">
                 {viewType === "list" ?
                   <>
@@ -56,6 +71,10 @@ const ActivityList: React.FC<ActivityListProps> = ({ selectedDate, timeDifferenc
               </div>
             </div>
           </div>
+          {activeModal === index && (
+            <Modal activity={activity} startTimeFormatted={startTimeFormatted} endTimeFormatted={endTimeFormatted} onClose={() => setActiveModal(null)} />
+          )}
+          </>
         );
       })}
     </>
