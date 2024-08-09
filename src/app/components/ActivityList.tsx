@@ -46,9 +46,10 @@ const ActivityList: React.FC<ActivityListProps> = ({ activities, oneMinuteOfHeig
                     </> :
                     <>
                       <h2>
+                        <span className="bold">{activity.title}</span> {startTimeFormatted}
                         {(activity.activityLength ?? 0) > 0 && (
                           <>
-                            <span className="bold">{activity.title}</span> {startTimeFormatted} - {endTimeFormatted}, {activity.activityLength} minutes
+                            - {endTimeFormatted}, {activity.activityLength} minutes
                           </>
                         )}
                       </h2>
