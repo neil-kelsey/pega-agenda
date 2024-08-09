@@ -36,7 +36,7 @@ npm run lint
 
 ## Project requirements and work done
 
-All of the work done is documented in this README but I have also made a quick YouTube video explaining the project and this repo which you can find here - https://youtu.be/-1Rnj66YkvY
+All of the work done is documented in this README but I have also made a quick YouTube video explaining the project and this repo which you can find here - https://youtu.be/dQk4O1oL1SA
 
 Here's the work I've done against the project requirements with explanations of what I've done
 
