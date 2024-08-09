@@ -41,6 +41,8 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 npm test
 ```
 
+How to lint add here
+
 ## Brain dump of things to improve
 
 Fully width functionality is fun and useful but hard coded to category-2 - expand this to be dynamic
@@ -50,3 +52,5 @@ select list styling
 filter functionality
 Boxes match height in list view
 Reusable testing data - I've recreated lots of the test data in the tests, would be nice to have a universal test data set
+Talk about how modals could have loads more details like location and speaker name etc which is why a modal is needed
+Accessibility - I have done an accessibility audit using the Wave audit tool and there are no errors, not even a contrast error. There are likely improvements I could make given more time
