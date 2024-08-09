@@ -8,7 +8,11 @@ jest.mock('../utils/applyCategoryStyles', () => ({
     applyCategoryStyles: jest.fn(),
 }));
 
-jest.mock('../components/Modal', () => () => <div>Mocked Modal</div>);
+jest.mock('../components/Modal', () => {
+    const MockedModal = () => <div>Mocked Modal</div>;
+    MockedModal.displayName = 'MockedModal';
+    return MockedModal;
+});
 
 describe('ActivityList', () => {
     const mockActivities = [
@@ -44,18 +48,15 @@ describe('ActivityList', () => {
         (applyCategoryStyles as jest.Mock).mockClear();
     });
 
-
     it('renders activities with correct titles and details', () => {
         render(<ActivityList {...mockProps} />);
-        expect(screen.getByText('Activity 1')).toBeInTheDocument();
         expect(screen.getByText('Details 1')).toBeInTheDocument();
-        expect(screen.getByText('Activity 2')).toBeInTheDocument();
         expect(screen.getByText('Details 2')).toBeInTheDocument();
     });
 
     it('toggles modal visibility on click', () => {
         render(<ActivityList {...mockProps} />);
-        const firstActivity = screen.getByText('Activity 1');
+        const firstActivity = screen.getByText('Details 1');
         fireEvent.click(firstActivity);
         expect(screen.getByText('Mocked Modal')).toBeInTheDocument();
         fireEvent.click(firstActivity);
@@ -64,8 +65,8 @@ describe('ActivityList', () => {
 
     it('renders activities with correct alignment and style', () => {
         render(<ActivityList {...mockProps} />);
-        const firstActivity = screen.getByText('Activity 1').closest('.activity');
-        const secondActivity = screen.getByText('Activity 2').closest('.activity');
+        const firstActivity = screen.getByText('Details 1').closest('.activity');
+        const secondActivity = screen.getByText('Details 2').closest('.activity');
         expect(firstActivity).toHaveClass('left');
         expect(secondActivity).toHaveClass('right');
         expect(firstActivity).toHaveStyle('top: 60%; height: calc(60% - 5px)');

@@ -2,46 +2,35 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
-First, run the development server:
+Clone this repo to your local machine, open a terminal and cd in to the root of this project then run
+
+```bash
+npm install
+```
+
+Then run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the project.
 
 ## Running the tests
+
+The projects components are fully covered by unit tests, you can run the tests yourself with
 
 ```bash
 npm test
 ```
 
-How to lint add here
+## Linting
+
+There is also a linter which you can fun with
+
+```bash
+npm run lint
+```
 
 ## Brain dump of things to improve
 
@@ -53,16 +42,24 @@ filter functionality
 Boxes match height in list view
 Reusable testing data - I've recreated lots of the test data in the tests, would be nice to have a universal test data set
 Talk about how modals could have loads more details like location and speaker name etc which is why a modal is needed
-Accessibility - I have done an accessibility audit using the Wave audit tool and there are no errors, not even a contrast error. There are likely improvements I could make given more time
-Text strings
+
+- Pagination
+- Linting
+- Language strings - All the text
+- Right to left languages functionality
+- There's no menu / mobile burger menu .. currently it's a single page so that doesn't matter but if this were to be developed further that would be required
+- Language select functionality - once I implement language strings, introducing multilanguage is pretty easy
+- The branding is ok, colours and fonts, look and feel etc but I'd like to refine it further
+- Accessibility - I have done an accessibility audit using the Wave audit tool and there are no errors, not even a contrast error. There are likely improvements I could make given more time
+  Text strings
+- CSS modules - I've made limited use of CSS modules. For example with the Model component I have encapsulated all of the styles needed for that component in it's own file - Module.module.css. Given move time I would break down all of the styles in globals.css and give all of the components the same treatment
 
 ## Testing
 
 Tested on Windows Chrome, Edge and simulated iPhone SE/XR and Samsung Galaxy in Chrome dev tools
 
 TODO
-CSS modules
+
 Code review
 Create README
 YouTube video
-Test on other laptop

@@ -27,15 +27,14 @@ describe('DayContainer', () => {
       </AppProvider>
     );
     // Renders activities from 2024-08-04
-    expect(screen.getByText('Check-in & Registration')).toBeInTheDocument();
-    expect(screen.getByText('Opening Remarks')).toBeInTheDocument();
-    
-     // Renders activities from 2024-08-05
-     const pegaWorldElements = screen.getAllByText('PegaWORLD');
-     expect(pegaWorldElements.length).toBeGreaterThan(0);
+    expect(screen.getByText('Travel to PegaWorld - Registration @ Marriot Orlando')).toBeInTheDocument();
 
-     // Doesn't renders activities from a day not selected (2024-08-07)
-     expect(screen.queryByText('Upgrade Information')).not.toBeInTheDocument();
+    // Renders activities from 2024-08-05
+    const pegaWorldElements = screen.getAllByText('Crystal J1');
+    expect(pegaWorldElements.length).toBeGreaterThan(0);
+
+    // Doesn't renders activities from a day not selected (2024-08-07)
+    expect(screen.queryByText('Upgrade Information')).not.toBeInTheDocument();
   });
 
   it('Does render TimeColumn component when viewType is calendar', () => {

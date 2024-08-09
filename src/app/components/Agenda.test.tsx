@@ -14,8 +14,17 @@ jest.mock('../utils/calculateTimeRange', () => ({
     calculateTimeRange: jest.fn(),
 }));
 
-jest.mock('../components/FilterPanel', () => () => <div>Mocked FilterPanel</div>);
-jest.mock('../components/DayContainer', () => () => <div>Mocked DayContainer</div>);
+jest.mock('../components/FilterPanel', () => {
+    const MockedFilterPanel = () => <div>Mocked FilterPanel</div>;
+    MockedFilterPanel.displayName = 'MockedFilterPanel';
+    return MockedFilterPanel;
+});
+
+jest.mock('../components/DayContainer', () => {
+    const MockedDayContainer = () => <div>Mocked DayContainer</div>;
+    MockedDayContainer.displayName = 'MockedDayContainer';
+    return MockedDayContainer;
+});
 
 const mockData = {
     event: 'Test Event',

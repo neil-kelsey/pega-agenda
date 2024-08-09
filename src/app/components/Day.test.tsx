@@ -13,7 +13,11 @@ jest.mock('../utils/addAlignmentToActivities', () => ({
   addAlignmentToActivities: jest.fn(),
 }));
 
-jest.mock('../components/ActivityList', () => () => <div>ActivityList Component</div>);
+jest.mock('../components/ActivityList', () => {
+  const MockedActivityList = () => <div>ActivityList Component</div>;
+  MockedActivityList.displayName = 'MockedActivityList';
+  return MockedActivityList;
+});
 
 describe('Day', () => {
   const mockActivities = [
@@ -62,11 +66,11 @@ describe('Day', () => {
 
   it('renders the time-lines div with 10 spans when viewType is calendar and timeDifference is 10', () => {
     render(<Day {...mockProps} />);
-    
+
     const timeLinesDiv = screen.getByText((content, element) => {
       return element?.className === 'time-lines';
     });
-    
+
     expect(timeLinesDiv).toBeInTheDocument();
     const spans = timeLinesDiv.querySelectorAll('span');
     expect(spans.length).toBe(10);
