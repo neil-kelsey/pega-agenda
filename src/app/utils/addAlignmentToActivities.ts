@@ -1,6 +1,8 @@
-export const addAlignmentToActivities = (activities) => {
+import { Activity } from "../types/activities";
+
+export const addAlignmentToActivities = (activities: Activity[]) => {
     // Helper function to parse ISO string to Date
-    const parseTime = (isoString) => new Date(isoString).getTime();
+    const parseTime = (isoString: string | number | Date) => new Date(isoString).getTime();
   
     // Sort activities by startTime
     activities.sort((a, b) => parseTime(a.startTime) - parseTime(b.startTime));

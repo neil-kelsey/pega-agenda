@@ -23,7 +23,6 @@ export const calculateTimeRange = (activities: Activity[], selectedDateOrDates: 
 
     // Formatting the times to be only hours and minutes
     const formattedEarliest = earliest.substring(0, 5);
-    const formattedLatest = latest.substring(0, 5);
 
     // Next we need to calculate the time range
     // Calculate the time difference in hours

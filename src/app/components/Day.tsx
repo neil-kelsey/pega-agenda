@@ -4,7 +4,7 @@ import ActivityList from "../components/ActivityList";
 import { formatDate } from "../utils/formateDate";
 import { addAlignmentToActivities } from "../utils/addAlignmentToActivities";
 
-const Day: React.FC<DayProps> = ({ timeDifference, date, activities, oneMinuteOfHeight, viewType}) => {
+const Day: React.FC<DayProps> = ({ timeDifference, date, activities, oneMinuteOfHeight, viewType }) => {
     const { dayOfWeek, dayOfMonth } = formatDate(date);
     const alignedActivities = addAlignmentToActivities(activities);
     return (
@@ -21,7 +21,7 @@ const Day: React.FC<DayProps> = ({ timeDifference, date, activities, oneMinuteOf
                 </div>
             }
             <div className="activities">
-                <ActivityList timeDifference={timeDifference} selectedDate={date} activities={alignedActivities} oneMinuteOfHeight={oneMinuteOfHeight} viewType={viewType} />
+                <ActivityList activities={alignedActivities} oneMinuteOfHeight={oneMinuteOfHeight} viewType={viewType} />
             </div>
         </div>
     );

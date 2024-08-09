@@ -2,7 +2,6 @@ import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import Agenda from '../components/Agenda';
 import { AgendaProps } from '../types/agendaProps';
-import { AppProvider } from '../context/AppContext';
 import { extractUniqueDates } from '../utils/extractUniqueDates';
 import { calculateTimeRange } from '../utils/calculateTimeRange';
 
