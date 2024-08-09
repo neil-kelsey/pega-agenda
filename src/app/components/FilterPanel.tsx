@@ -23,7 +23,7 @@ const FilterPanel: React.FC<FilterPanelProps> = ({ viewMode, uniqueDates, select
       {viewMode === "week" ?
         <></> :
         <>
-          <label>Select day</label>
+          <label className="select">Select day</label>
           <select onChange={handleDateChange} value={selectedDate}>
             {uniqueDates.map(date => {
               const formattedDate = formatDate(date);
@@ -35,7 +35,7 @@ const FilterPanel: React.FC<FilterPanelProps> = ({ viewMode, uniqueDates, select
           <span className="vr"></span>
         </>
       }
-      <span>
+      <span className="view-type-wrapper">
         <input type="radio" id="calendar" name="viewType" value="calendar" checked={viewType === 'calendar'} onChange={handleViewTypeChange} />
         <label className="mr-lg" htmlFor="calendar">Calendar</label>
         <input type="radio" id="list" name="viewType" value="list" checked={viewType === 'list'} onChange={handleViewTypeChange} />

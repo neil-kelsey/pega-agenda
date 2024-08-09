@@ -56,9 +56,11 @@ Talk about how modals could have loads more details like location and speaker na
 Accessibility - I have done an accessibility audit using the Wave audit tool and there are no errors, not even a contrast error. There are likely improvements I could make given more time
 Text strings
 
+## Testing
+
+Tested on Windows Chrome, Edge and simulated iPhone SE/XR and Samsung Galaxy in Chrome dev tools
+
 TODO
-Responsive styling
-delete unneeded files - images etc
 CSS modules
 Code review
 Create README

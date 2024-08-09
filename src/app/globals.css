@@ -549,10 +549,12 @@ main.list .activity.right {
 
   button {
     font-size: 12px;
+    margin:0 0 var(--pega-space-lg) 0;
   }
 
   button, label, select {
     font-size: 14px;
+    margin-bottom:var(--pega-space-lg);
   }
 
   input {
@@ -579,6 +581,11 @@ main.list .activity.right {
   .filters {
     padding:var(--pega-space-md);
     margin:0;
+  }
+
+  .filters .view-type-wrapper {
+    display:block;
+    width:100%;
   }
 
   main.list .week {
@@ -617,16 +624,18 @@ main.list .activity.right {
 
 @media (max-width: 480px) {
 
-  main.list .week, main.list .day {
-    display:block
-  }
-
   button {
     font-size: 12px;
+    padding: 10px 20px;
   }
 
   button, label, select {
     font-size: 14px;
+  }
+
+  select {
+    padding: var(--pega-space-sm);
+    height:36px;
   }
 
   input {
@@ -637,8 +646,16 @@ main.list .activity.right {
     padding:10px;
   }
 
+  label.select {
+    display:none;
+  }
+
   .vr {
-    margin: var(--pega-space-lg)
+    margin: var(--pega-space-md)
+  }
+  
+  .mr-lg {
+    margin-right: var(--pega-space-md);
   }
 
   .time-column {
@@ -651,8 +668,21 @@ main.list .activity.right {
     margin:0;
   }
 
+  .filters .view-type-wrapper {
+    display:block;
+    width:100%;
+  }
+
+  main.list .week, main.list .day {
+    display:block
+  }
+
+  main.list .day .day-header {
+    position: initial;
+  }
+
   main.list .week {
-    margin: 0 auto var(--pega-space-xxxl) auto;
+    margin: 0 auto var(--pega-space-xl) auto;
   }
 
   main.list .activity {

@@ -10,10 +10,6 @@ const HomeContent: React.FC = () => {
   return (
     <>
       <Header />
-      {/* TODO - CSS to modules */}
-      {/* TODO - filter panel responsive styling */}
-      {/* TODO - delete unneeded files - images etc, CSS modules*/}
-      {/* TODO - remove 0 minutes thingy */}
       <Agenda fullWidth={true} activityMinHeight="25px" data={exampleData} />
       <Footer />
     </>
